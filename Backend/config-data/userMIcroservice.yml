@@ -6,7 +6,7 @@ spring:
     name: backend-user
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${POSTGRES_DB_HOST}:5432/${POSTGRES_DB_STUDENT}
+    url: jdbc:postgresql://localhost:5432/userDB
     username: postgres
     password: admin
   jpa:
@@ -14,8 +14,6 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
-  config:
-    import: optional:configserver:http://localhots:8888
 eureka:
   instance:
     hostname: localhost
