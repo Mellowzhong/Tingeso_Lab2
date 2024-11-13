@@ -22,6 +22,7 @@
         <module>eureka</module>
         <module>config</module>
         <module>userMicroservice</module>
+        <module>creditMicroservice</module>
     </modules>
 
     <properties>

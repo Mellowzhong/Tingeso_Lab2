@@ -1,26 +1,5 @@
-server:
-  port: 8090
-
 spring:
   application:
     name: backend-user
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${POSTGRES_DB_HOST}:5432/${POSTGRES_DB_STUDENT}
-    username: postgres
-    password: admin
-  jpa:
-    database: POSTGRESQL
-    show-sql: true
-    hibernate:
-      ddl-auto: create
   config:
     import: optional:configserver:http://localhots:8888
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-    fetch-registry: true
-    register-with-eureka: true
