@@ -23,6 +23,7 @@
         <module>config</module>
         <module>userMicroservice</module>
         <module>creditMicroservice</module>
+        <module>documentMicroservice</module>
     </modules>
 
     <properties>

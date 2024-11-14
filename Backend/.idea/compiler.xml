@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="creditMicroservice" />
         <module name="userMicroservice" />
+        <module name="documentMicroservice" />
         <module name="config" />
         <module name="gateway" />
         <module name="eureka" />
@@ -18,6 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="config" options="-parameters" />
       <module name="creditMicroservice" options="-parameters" />
+      <module name="documentMicroservice" options="-parameters" />
       <module name="eureka" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="userMicroservice" options="-parameters" />

@@ -25,3 +25,7 @@ spring:
           uri: lb://creditMicroservice
           predicates:
             - Path=/credit/**
+        - id: documentMicroservice
+          uri: lb://documentMicroservice
+          predicates:
+            - Path=/document/**
