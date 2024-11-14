@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: documentMicroservice
+    name: financialEvaluationMicroservice
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/documentDB
