@@ -24,6 +24,7 @@
         <module>userMicroservice</module>
         <module>creditMicroservice</module>
         <module>financialEvaluationMicroservice</module>
+        <module>documentMicroservice</module>
     </modules>
 
     <properties>
