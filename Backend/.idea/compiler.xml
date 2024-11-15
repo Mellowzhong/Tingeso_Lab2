@@ -10,12 +10,17 @@
         <module name="creditMicroservice" />
         <module name="documentMicroservice (1)" />
         <module name="documentMicroservice" />
-        <module name="documentMicroservice (2)" />
         <module name="eureka" />
         <module name="userMicroservice" />
         <module name="config" />
         <module name="gateway" />
         <module name="user-microservice" />
+      </profile>
+      <profile name="Annotation profile for Backend" enabled="true">
+        <sourceOutputDir name="../documentMicroservice/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../documentMicroservice/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="documentMicroservice (2)" />
       </profile>
     </annotationProcessing>
   </component>
@@ -25,6 +30,7 @@
       <module name="creditMicroservice" options="-parameters" />
       <module name="documentMicroservice" options="-parameters" />
       <module name="documentMicroservice (1)" options="-parameters" />
+      <module name="documentMicroservice (2)" options="-parameters" />
       <module name="eureka" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="user-microservice" options="-parameters" />
