@@ -11,9 +11,9 @@
         <module name="documentMicroservice (1)" />
         <module name="documentMicroservice" />
         <module name="eureka" />
+        <module name="gateway-service" />
         <module name="userMicroservice" />
         <module name="config" />
-        <module name="gateway" />
         <module name="user-microservice" />
       </profile>
       <profile name="Annotation profile for Backend" enabled="true">
@@ -23,6 +23,9 @@
         <module name="documentMicroservice (2)" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="gateway" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -33,6 +36,7 @@
       <module name="documentMicroservice (2)" options="-parameters" />
       <module name="eureka" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
       <module name="user-microservice" options="-parameters" />
       <module name="userMicroservice" options="-parameters" />
     </option>
