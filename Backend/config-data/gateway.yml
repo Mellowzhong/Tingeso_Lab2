@@ -16,10 +16,9 @@ spring:
       discovery:
         locator:
           enabled: true
-          lower-case-service-id: false
       routes:
         - id: user-microservice
-          uri: lb://USERMICROSERVICE
+          uri: lb://user-microservice
           predicates:
             - Path=/user/**
         - id: credit-microservice
