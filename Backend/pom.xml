@@ -18,7 +18,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>gateway-service</module>
+        <module>gateway</module>
         <module>eureka</module>
         <module>config</module>
         <module>user-microservice</module>
