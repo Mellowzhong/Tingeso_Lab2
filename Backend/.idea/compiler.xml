@@ -10,10 +10,12 @@
         <module name="creditMicroservice" />
         <module name="documentMicroservice (1)" />
         <module name="documentMicroservice" />
+        <module name="documentMicroservice (2)" />
         <module name="eureka" />
         <module name="userMicroservice" />
         <module name="config" />
         <module name="gateway" />
+        <module name="user-microservice" />
       </profile>
     </annotationProcessing>
   </component>
@@ -25,6 +27,7 @@
       <module name="documentMicroservice (1)" options="-parameters" />
       <module name="eureka" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="user-microservice" options="-parameters" />
       <module name="userMicroservice" options="-parameters" />
     </option>
   </component>
