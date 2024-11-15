@@ -21,7 +21,7 @@
         <module>gateway</module>
         <module>eureka</module>
         <module>config</module>
-        <module>userMicroservice</module>
+        <module>user-microservice</module>
         <module>creditMicroservice</module>
         <module>financialEvaluationMicroservice</module>
         <module>documentMicroservice</module>

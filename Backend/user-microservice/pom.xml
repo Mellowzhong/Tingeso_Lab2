@@ -8,7 +8,7 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.microservice.userMicroservice</groupId>
-	<artifactId>userMicroservice</artifactId>
+	<artifactId>user-microservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>userMicroservice</name>
 	<description>Demo project for Spring Boot</description>

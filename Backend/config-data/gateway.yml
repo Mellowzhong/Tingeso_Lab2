@@ -21,11 +21,3 @@ spring:
           uri: lb://user-microservice
           predicates:
             - Path=/user/**
-        - id: credit-microservice
-          uri: lb://credit-microservice
-          predicates:
-            - Path=/credit/**
-        - id: document-microservice
-          uri: lb://document-microservice
-          predicates:
-            - Path=/document/**
