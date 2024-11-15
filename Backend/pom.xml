@@ -22,9 +22,6 @@
         <module>eureka</module>
         <module>config</module>
         <module>user-microservice</module>
-        <module>creditMicroservice</module>
-        <module>financialEvaluationMicroservice</module>
-        <module>documentMicroservice</module>
     </modules>
 
     <properties>
