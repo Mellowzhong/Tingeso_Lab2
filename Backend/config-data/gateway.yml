@@ -26,15 +26,15 @@ spring:
             allowed-headers: "*"
             allow-credentials: true
       routes:
-        - id: user
-          uri: lb://userMicroservice
+        - id: user-microservice
+          uri: lb://user-microservice
           predicates:
             - Path=/user/**
-        - id: creditMicroservice
-          uri: lb://creditMicroservice
+        - id: document-microservice
+          uri: lb://document-microservice
           predicates:
             - Path=/credit/**
-        - id: documentMicroservice
-          uri: lb://documentMicroservice
+        - id: document-microservice
+          uri: lb://document-microservice
           predicates:
             - Path=/document/**
