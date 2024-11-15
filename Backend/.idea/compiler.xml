@@ -7,11 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="creditMicroservice" />
-        <module name="userMicroservice" />
+        <module name="documentMicroservice (1)" />
         <module name="documentMicroservice" />
+        <module name="eureka" />
+        <module name="userMicroservice" />
         <module name="config" />
         <module name="gateway" />
-        <module name="eureka" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,6 +21,7 @@
       <module name="config" options="-parameters" />
       <module name="creditMicroservice" options="-parameters" />
       <module name="documentMicroservice" options="-parameters" />
+      <module name="documentMicroservice (1)" options="-parameters" />
       <module name="eureka" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="userMicroservice" options="-parameters" />
