@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: creditMicroservice
-  config:
-    import: configserver:http://localhost:8888

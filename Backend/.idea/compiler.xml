@@ -7,8 +7,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="creditMicroservice" />
-        <module name="documentMicroservice (1)" />
         <module name="documentMicroservice" />
         <module name="eureka" />
         <module name="userMicroservice" />
@@ -24,6 +22,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="creditMicroservice" target="17" />
+      <module name="documentMicroservice (1)" target="17" />
       <module name="gateway-service" target="11" />
     </bytecodeTargetLevel>
   </component>
