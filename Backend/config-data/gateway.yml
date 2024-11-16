@@ -18,6 +18,6 @@ spring:
           enabled: true
       routes:
         - id: user-microservice
-          uri: http://localhost:9090
+          uri: lb://user-microservice
           predicates:
             - Path=/user/**
