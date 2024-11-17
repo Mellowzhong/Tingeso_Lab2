@@ -8,9 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="documentMicroservice" />
+        <module name="credit-microservice" />
+        <module name="eureka" />
         <module name="userMicroservice" />
         <module name="config" />
-        <module name="eureka" />
         <module name="user-microservice" />
         <module name="gateway" />
       </profile>
@@ -25,6 +26,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="config" options="-parameters" />
+      <module name="credit-microservice" options="-parameters" />
       <module name="creditMicroservice" options="-parameters" />
       <module name="documentMicroservice" options="-parameters" />
       <module name="documentMicroservice (1)" options="-parameters" />

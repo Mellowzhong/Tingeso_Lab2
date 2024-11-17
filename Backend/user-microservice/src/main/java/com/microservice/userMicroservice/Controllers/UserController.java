@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/user")
@@ -33,5 +35,11 @@ public class UserController {
     @PostMapping("/get")
     public UserRequestDataResponseDTO getUserByUserData(@RequestBody UserRequestDataDTO userRequestDataForm) {
         return userService.getUserByData(userRequestDataForm);
+    }
+
+//    Feing endpoints
+    @GetMapping("/getById/{id}")
+    public Optional<User> findUserById(@PathVariable UUID id) {
+        return userService.findUserById(id);
     }
 }
