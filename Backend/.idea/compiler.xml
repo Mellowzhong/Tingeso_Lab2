@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="document-microservice" />
         <module name="documentMicroservice" />
         <module name="credit-microservice" />
         <module name="eureka" />
@@ -29,6 +30,7 @@
       <module name="config" options="-parameters" />
       <module name="credit-microservice" options="-parameters" />
       <module name="creditMicroservice" options="-parameters" />
+      <module name="document-microservice" options="-parameters" />
       <module name="documentMicroservice" options="-parameters" />
       <module name="documentMicroservice (1)" options="-parameters" />
       <module name="documentMicroservice (2)" options="-parameters" />

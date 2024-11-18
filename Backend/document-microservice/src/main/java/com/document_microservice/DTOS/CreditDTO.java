@@ -1,11 +1,10 @@
-package com.utils_microservice.entities;
+package com.document_microservice.DTOS;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -14,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Credit {
+public class CreditDTO {
     private UUID id;
 
     private String creditType;
@@ -30,8 +29,4 @@ public class Credit {
     private Date applicationDate;
 
     private UUID userId;
-
-    private List<Document> documents = new ArrayList<>();
-
-//    private FinancialEvaluation financialEvaluation;
 }

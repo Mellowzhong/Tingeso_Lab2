@@ -1,6 +1,5 @@
-package com.utils_microservice.entities;
+package com.document_microservice.DTOS;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,16 +11,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Document {
+public class DocumentDTO {
     private UUID id;
-
     private String typeCreditDocument;
-
     private String documentName;
-
     private String documentType;
-
-    private byte[] data;
-
-    private Credit credit;
 }

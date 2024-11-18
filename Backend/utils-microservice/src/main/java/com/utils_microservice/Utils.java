@@ -2,18 +2,11 @@ package com.utils_microservice;
 
 import com.utils_microservice.DTO.CalculateCreditSimulationDTO;
 import com.utils_microservice.DTO.CalculateDebtToIncomeRatioDTO;
-import com.utils_microservice.DTO.CreditDTO;
-import com.utils_microservice.DTO.DocumentDTO;
-import com.utils_microservice.entities.Credit;
-import com.utils_microservice.entities.Document;
 import com.utils_microservice.response.SimulationResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/utils")
@@ -81,38 +74,5 @@ public class Utils {
                     .message("No esta dentro del rango")
                     .build();
         }
-    }
-
-    @PostMapping("/convertToDocumentDTO")
-    public DocumentDTO convertToDocumentDTO(Document document) {
-        return DocumentDTO.builder()
-                .id(document.getId())
-                .typeCreditDocument(document.getTypeCreditDocument())
-                .documentName(document.getDocumentName())
-                .documentType(document.getDocumentType())
-                .build();
-    }
-
-    @PostMapping("/convertToCreditDTO")
-    public CreditDTO convertToCreditDTO(Credit credit) {
-        CreditDTO creditDTO = CreditDTO.builder()
-                .id(credit.getId())
-                .creditType(credit.getCreditType())
-                .requestedAmount(credit.getRequestedAmount())
-                .totalPriceHome(credit.getTotalPriceHome())
-                .monthlyClientIncome(credit.getMonthlyClientIncome())
-                .status(credit.getStatus())
-                .applicationDate(credit.getApplicationDate())
-                // .financialEvaluation(credit.getFinancialEvaluation()) // Comentado como en tu código original
-                .userId(credit.getUserId())
-                .build();
-
-        List<DocumentDTO> documentDTOS = credit.getDocuments().stream()
-                .map(this::convertToDocumentDTO)
-                .collect(Collectors.toList());
-
-        creditDTO.setDocuments(documentDTOS);
-
-        return creditDTO;
     }
 }

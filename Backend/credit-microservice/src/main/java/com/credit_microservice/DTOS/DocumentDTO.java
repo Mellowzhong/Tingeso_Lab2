@@ -1,4 +1,4 @@
-package com.utils_microservice.DTO;
+package com.credit_microservice.DTOS;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
