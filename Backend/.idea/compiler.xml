@@ -10,6 +10,7 @@
         <module name="documentMicroservice" />
         <module name="credit-microservice" />
         <module name="eureka" />
+        <module name="utils-microservice" />
         <module name="userMicroservice" />
         <module name="config" />
         <module name="user-microservice" />
@@ -36,6 +37,7 @@
       <module name="gateway-service" options="-parameters" />
       <module name="user-microservice" options="-parameters" />
       <module name="userMicroservice" options="-parameters" />
+      <module name="utils-microservice" options="-parameters" />
     </option>
   </component>
 </project>

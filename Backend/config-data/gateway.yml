@@ -18,6 +18,10 @@ spring:
           uri: lb://credit-microservice
           predicates:
             - Path=/credit/**
+        - id: utils-microservice
+          uri: lb://utils-microservice
+          predicates:
+            - Path=/calculate/**
 
 eureka:
   client:

@@ -13,5 +13,6 @@
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-microservice/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/userMicroservice/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/utils-microservice/src/main/java" charset="UTF-8" />
   </component>
 </project>

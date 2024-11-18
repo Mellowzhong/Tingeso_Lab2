@@ -23,6 +23,7 @@
         <module>config</module>
         <module>user-microservice</module>
         <module>credit-microservice</module>
+        <module>utils-microservice</module>
     </modules>
 
     <properties>
