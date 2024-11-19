@@ -5,6 +5,8 @@ spring:
   application:
     name: document-microservice
   datasource:
+    hikari:
+      auto-commit: false
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/documentDB
     username: postgres

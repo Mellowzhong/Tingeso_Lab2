@@ -33,9 +33,5 @@ public class Credit {
 
     private UUID userId;
 
-//    @OneToMany(mappedBy = "credit", cascade = CascadeType.ALL)
-//    private List<Document> documents = new ArrayList<>();
-//
-//    @OneToOne
     private UUID financialEvaluationId;
 }
