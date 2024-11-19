@@ -18,6 +18,10 @@ spring:
           uri: lb://credit-microservice
           predicates:
             - Path=/credit/**
+        - id: document-microservice
+          uri: lb://document-microservice
+          predicates:
+            - Path=/document/**
         - id: utils-microservice
           uri: lb://utils-microservice
           predicates:
