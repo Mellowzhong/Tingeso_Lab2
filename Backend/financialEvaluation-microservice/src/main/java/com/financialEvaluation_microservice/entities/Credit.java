@@ -1,4 +1,4 @@
-package com.credit_microservice.entities;
+package com.financialEvaluation_microservice.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,22 +20,11 @@ public class Credit {
     private UUID id;
 
     private String creditType;
-
     private Integer requestedAmount;
-
     private Integer totalPriceHome;
-
     private Integer monthlyClientIncome;
-
     private String status;
-
     private Date applicationDate;
-
     private UUID userId;
-
-//    @OneToMany(mappedBy = "credit", cascade = CascadeType.ALL)
-//    private List<Document> documents = new ArrayList<>();
-//
-//    @OneToOne
     private UUID financialEvaluationId;
 }

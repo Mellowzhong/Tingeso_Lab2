@@ -22,5 +22,6 @@ public class CreditDTO {
     private String status;
     private Date applicationDate;
     private UUID userId;
+    private UUID financialEvaluationId;
     private List<DocumentDTO> documents;
 }

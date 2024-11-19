@@ -5,7 +5,7 @@ import com.document_microservice.DTOS.DocumentDTO;
 import com.document_microservice.entities.Document;
 import com.document_microservice.repositories.DocumentRepository;
 import com.document_microservice.utils.ToDTO;
-import com.document_microservice.client.creditClient;
+import com.document_microservice.client.CreditClient;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,12 +24,12 @@ import java.util.stream.Collectors;
 public class DocumentService {
     private final DocumentRepository documentRepository;
     private final ToDTO toDTO; // Inyectar la clase de utilidades
-    private final creditClient creditClient;
+    private final CreditClient creditClient;
 
     @Autowired
-    public DocumentService(DocumentRepository documentRepository, ToDTO toDTO, creditClient creditClient) {
+    public DocumentService(DocumentRepository documentRepository, ToDTO toDTO, CreditClient creditClient) {
         this.documentRepository = documentRepository;
-        this.toDTO = toDTO; // Inyectar la instancia de ToDTO
+        this.toDTO = toDTO;
         this.creditClient = creditClient;
     }
 
