@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.UUID;
 
-@FeignClient(name = "document-microservice", url = "http://localhost:8080/user/")
+@FeignClient(name = "document-microservice", url = "http://localhost:8080/document/")
 public interface documentClient {
     @GetMapping("/get/{creditId}")
     List<DocumentDTO> getAllDocumentsByCreditId(@PathVariable("creditId") UUID creditId);

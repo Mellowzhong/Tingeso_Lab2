@@ -1,6 +1,5 @@
-package com.credit_microservice.DTOS;
+package com.credit_microservice.entities;
 
-import com.credit_microservice.entities.Credit;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,12 +12,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserDTO {
+public class User {
     private UUID id;
     private String firstName;
     private String lastName;
     private String rut;
     private String address;
     private int age;
-    List<Credit> credits;
 }
