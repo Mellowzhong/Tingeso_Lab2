@@ -25,6 +25,7 @@
         <module>credit-microservice</module>
         <module>utils-microservice</module>
         <module>document-microservice</module>
+        <module>financialEvaluation-microservice</module>
     </modules>
 
     <properties>

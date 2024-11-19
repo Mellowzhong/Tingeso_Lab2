@@ -10,6 +10,7 @@
         <module name="document-microservice" />
         <module name="documentMicroservice" />
         <module name="credit-microservice" />
+        <module name="financialEvaluation-microservice" />
         <module name="eureka" />
         <module name="utils-microservice" />
         <module name="userMicroservice" />
@@ -35,6 +36,7 @@
       <module name="documentMicroservice (1)" options="-parameters" />
       <module name="documentMicroservice (2)" options="-parameters" />
       <module name="eureka" options="-parameters" />
+      <module name="financialEvaluation-microservice" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="user-microservice" options="-parameters" />
