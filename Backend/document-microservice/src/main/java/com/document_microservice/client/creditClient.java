@@ -9,7 +9,7 @@ import javax.swing.text.html.Option;
 import java.util.Optional;
 import java.util.UUID;
 
-@FeignClient(name = "credit-microservice", url = "http://localhost:8080/user/")
+@FeignClient(name = "credit-microservice", url = "http://localhost:8080/credit/")
 public interface creditClient {
     @GetMapping("/get/{creditId}")
     Optional<CreditDTO> getCreditById(@PathVariable("creditId") UUID creditId);
