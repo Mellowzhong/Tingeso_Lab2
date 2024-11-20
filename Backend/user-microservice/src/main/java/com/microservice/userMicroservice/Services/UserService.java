@@ -59,8 +59,4 @@ public class UserService {
     public Optional<User> findUserById(UUID id){
         return  userRepository.findById(id);
     }
-
-    public List<Credit> getAllCreditsByUserId (UUID userId){
-
-    }
 }
