@@ -38,7 +38,7 @@ spring:
         - id: utils-microservice
           uri: lb://utils-microservice
           predicates:
-            - Path=/calculate/**
+            - Path=/utils/**
 
 eureka:
   client:
