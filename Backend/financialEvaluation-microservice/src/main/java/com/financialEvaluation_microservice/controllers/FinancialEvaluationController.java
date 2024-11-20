@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -36,5 +37,9 @@ public class FinancialEvaluationController {
     }
 
 //    Feign controllers
+    @GetMapping("/getById/{financialEvaluationId}")
+    public Optional<FinancialEvaluation> findFinancialEvaluationById(@PathVariable("financialEvaluationId") UUID financialEvaluationId) {
+        return financialEvaluationService.getFinancialEvaluationById(financialEvaluationId);
+    }
 }
 

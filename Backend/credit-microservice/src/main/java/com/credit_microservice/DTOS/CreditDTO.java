@@ -1,5 +1,6 @@
 package com.credit_microservice.DTOS;
 
+import com.credit_microservice.entities.FinancialEvaluation;
 import com.credit_microservice.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,5 +25,5 @@ public class CreditDTO {
     private Date applicationDate;
     private User user;
     private List<DocumentDTO> documents;
-    private UUID financialEvaluationId;
+    private FinancialEvaluation financialEvaluation;
 }
