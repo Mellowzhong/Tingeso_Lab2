@@ -2,41 +2,50 @@ package com.credit_microservice.utils;
 
 import com.credit_microservice.DTOS.CreditDTO;
 import com.credit_microservice.DTOS.DocumentDTO;
-import com.credit_microservice.client.documentClient;
+import com.credit_microservice.client.DocumentClient;
+import com.credit_microservice.client.UserClient;
 import com.credit_microservice.entities.Credit;
-import com.credit_microservice.entities.Document;
+import com.credit_microservice.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Component
 public class ToDTO {
-    private final documentClient documentClient;
+    private final DocumentClient documentClient;
+    private final UserClient userClient;
 
     @Autowired
-    public ToDTO(documentClient documentClient) {
+    public ToDTO(DocumentClient documentClient, UserClient userClient) {
         this.documentClient = documentClient;
+        this.userClient = userClient;
     }
 
     public CreditDTO convertToCreditDTO(Credit credit) {
-        CreditDTO creditDTO = CreditDTO.builder()
-                .id(credit.getId())
-                .creditType(credit.getCreditType())
-                .requestedAmount(credit.getRequestedAmount())
-                .totalPriceHome(credit.getTotalPriceHome())
-                .monthlyClientIncome(credit.getMonthlyClientIncome())
-                .status(credit.getStatus())
-                .applicationDate(credit.getApplicationDate())
-                 .financialEvaluationId(credit.getFinancialEvaluationId())
-                .userId(credit.getUserId())
-                .build();
+        Optional<User> optionalUser = userClient.findUserById(credit.getUserId());
 
-        List<DocumentDTO> documentDTOList = documentClient.getAllDocumentsByCreditId(credit.getId());
+        if (optionalUser.isPresent()) {
+            CreditDTO creditDTO = CreditDTO.builder()
+                    .id(credit.getId())
+                    .creditType(credit.getCreditType())
+                    .requestedAmount(credit.getRequestedAmount())
+                    .totalPriceHome(credit.getTotalPriceHome())
+                    .monthlyClientIncome(credit.getMonthlyClientIncome())
+                    .status(credit.getStatus())
+                    .applicationDate(credit.getApplicationDate())
+                    .financialEvaluationId(credit.getFinancialEvaluationId())
+                    .user(optionalUser.get())
+                    .build();
 
-        creditDTO.setDocuments(documentDTOList);
+            List<DocumentDTO> documentDTOList = documentClient.getAllDocumentsByCreditId(credit.getId());
 
-        return creditDTO;
+            creditDTO.setDocuments(documentDTOList);
+
+            return creditDTO;
+        }
+
+        return null;
     }
 }

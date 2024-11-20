@@ -38,7 +38,8 @@ public class UserController {
         return userService.getUserByData(userRequestDataForm);
     }
 
-//    Feing endpoints
+    //    Feing endpoints
+
     @GetMapping("/getById/{id}")
     public Optional<User> findUserById(@PathVariable UUID id) {
         return userService.findUserById(id);

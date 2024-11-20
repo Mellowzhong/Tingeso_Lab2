@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @FeignClient(name = "document-microservice", url = "http://localhost:8080/document/")
-public interface documentClient {
+public interface DocumentClient {
     @GetMapping("/get/{creditId}")
     List<DocumentDTO> getAllDocumentsByCreditId(@PathVariable("creditId") UUID creditId);
 }

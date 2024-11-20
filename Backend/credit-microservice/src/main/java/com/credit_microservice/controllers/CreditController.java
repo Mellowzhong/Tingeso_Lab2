@@ -36,7 +36,7 @@ public class CreditController {
     }
 
 //    Feign controllers
-    @GetMapping("/get/{creditId}")
+    @GetMapping("/getCredit/{creditId}")
     public Optional<CreditDTO> getCreditById(@PathVariable("creditId") UUID creditId) {
         return creditService.getCreditById(creditId);
     }

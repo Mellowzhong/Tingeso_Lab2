@@ -1,7 +1,7 @@
 package com.credit_microservice.services;
 
 import com.credit_microservice.DTOS.CreditDTO;
-import com.credit_microservice.client.userClient;
+import com.credit_microservice.client.UserClient;
 import com.credit_microservice.entities.User;
 import com.credit_microservice.entities.Credit;
 import com.credit_microservice.repositories.CreditRepository;
@@ -9,7 +9,6 @@ import com.credit_microservice.utils.ToDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -19,11 +18,11 @@ import java.util.stream.Collectors;
 @Service
 public class CreditService {
     private final CreditRepository creditRepository;
-    private final userClient userClient;
+    private final UserClient userClient;
     private final ToDTO toDTO; // Instancia de la clase de utilidades
 
     @Autowired
-    public CreditService(CreditRepository creditRepository, userClient userClient, ToDTO toDTO) {
+    public CreditService(CreditRepository creditRepository, UserClient userClient, ToDTO toDTO) {
         this.creditRepository = creditRepository;
         this.userClient = userClient;
         this.toDTO = toDTO;

@@ -10,6 +10,6 @@ import java.util.UUID;
 
 @FeignClient(name = "credit-microservice", url = "http://localhost:8080/credit/")
 public interface CreditClient {
-    @GetMapping("/get/{creditId}")
+    @GetMapping("/getCredit/{creditId}")
     Optional<CreditDTO> getCreditById(@PathVariable("creditId") UUID creditId);
 }

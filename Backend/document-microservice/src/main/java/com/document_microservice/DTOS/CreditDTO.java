@@ -1,5 +1,6 @@
 package com.document_microservice.DTOS;
 
+import com.document_microservice.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +22,7 @@ public class CreditDTO {
     private Integer monthlyClientIncome;
     private String status;
     private Date applicationDate;
-    private UUID userId;
+    private User user;
     private UUID financialEvaluationId;
     private List<DocumentDTO> documents;
 }

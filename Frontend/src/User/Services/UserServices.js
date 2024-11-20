@@ -17,3 +17,12 @@ export const getUser = async (userData) => {
     console.error("Error getting user", error);
   }
 };
+
+export const getUserById = async (userId) => {
+  try {
+    const response = await api.get(`/user/getUser/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error getting user by id", error);
+  }
+};

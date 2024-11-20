@@ -2,7 +2,7 @@ import api from "../../Utils/BaseUrl";
 
 export const getSimulation = async (simulationData) => {
   try {
-    const response = await api.post("/calculate/simulation", simulationData, {
+    const response = await api.post("/utils/simulation", simulationData, {
       headers: {
         "Content-Type": "application/json",
       },
