@@ -2,6 +2,7 @@ package com.microservice.userMicroservice.Controllers;
 
 import com.microservice.userMicroservice.DTOS.UserRequestDataDTO;
 import com.microservice.userMicroservice.DTOS.UserRequestDataResponseDTO;
+import com.microservice.userMicroservice.Entities.Credit;
 import com.microservice.userMicroservice.Entities.User;
 import com.microservice.userMicroservice.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

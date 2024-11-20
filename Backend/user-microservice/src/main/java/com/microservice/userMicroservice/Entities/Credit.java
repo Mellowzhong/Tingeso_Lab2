@@ -1,6 +1,5 @@
-package com.financialEvaluation_microservice.entities;
+package com.microservice.userMicroservice.Entities;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

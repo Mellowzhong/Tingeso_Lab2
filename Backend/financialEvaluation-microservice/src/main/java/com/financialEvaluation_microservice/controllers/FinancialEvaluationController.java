@@ -34,5 +34,7 @@ public class FinancialEvaluationController {
     public ResponseEntity<FinancialEvaluation> updateFinancialEvaluation(@PathVariable("creditId") UUID creditId, @PathVariable("financialEvaluationId") UUID financialEvaluationId,@RequestBody FinancialEvaluation financialEvaluation) {
         return financialEvaluationService.updateFinancialEvaluation(creditId, financialEvaluationId, financialEvaluation);
     }
+
+//    Feign controllers
 }
 

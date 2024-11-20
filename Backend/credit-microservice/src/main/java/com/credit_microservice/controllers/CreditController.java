@@ -25,15 +25,15 @@ public class CreditController {
         return creditService.addCredit(credit, user_id);
     }
 
-//    @GetMapping("/get/{user_id}")
-//    public List<CreditDTO> getCreditByUserId(@PathVariable("user_id") UUID user_id) {
-//        return creditService.getAllCreditsByUserId(user_id);
-//    }
-//
-//    @GetMapping("/getAll")
-//    public List<CreditDTO> getAllCredits() {
-//        return creditService.getAllCredits();
-//    }
+    @GetMapping("/get/{user_id}")
+    public List<CreditDTO> getCreditByUserId(@PathVariable("user_id") UUID user_id) {
+        return creditService.getAllCreditsByUserId(user_id);
+    }
+
+    @GetMapping("/getAll")
+    public List<CreditDTO> getAllCredits() {
+        return creditService.getAllCredits();
+    }
 
 //    Feign controllers
     @GetMapping("/get/{creditId}")

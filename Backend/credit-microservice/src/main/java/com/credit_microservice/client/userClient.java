@@ -1,11 +1,13 @@
 package com.credit_microservice.client;
 
 
+import com.credit_microservice.entities.Credit;
 import com.credit_microservice.entities.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

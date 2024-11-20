@@ -41,16 +41,16 @@ public class CreditService {
         return null;
     }
 
-//    public List<CreditDTO> getAllCreditsByUserId(UUID user_id) {
-//        Optional<User> optionalUser = userClient.findUserById(user_id);
-//        if (optionalUser.isPresent()) {
-//            User user = optionalUser.get();
-//            return user.getCredits().stream()
-//                    .map(toDTO::convertToCreditDTO)
-//                    .collect(Collectors.toList());
-//        }
-//        return Collections.emptyList();
-//    }
+    public List<CreditDTO> getAllCreditsByUserId(UUID user_id) {
+        Optional<List<Credit>> creditList = creditRepository.findAllByUserId(user_id);
+
+        if (creditList.isPresent()) {
+            return creditList.get().stream()
+                    .map(toDTO::convertToCreditDTO)
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
 
     public List<CreditDTO> getAllCredits() {
         List<Credit> credits = creditRepository.findAll();

@@ -20,15 +20,6 @@ public class ToDTO {
         this.documentClient = documentClient;
     }
 
-    public DocumentDTO convertToDocumentDTO(Document document) {
-        return DocumentDTO.builder()
-                .id(document.getId())
-                .typeCreditDocument(document.getTypeCreditDocument())
-                .documentName(document.getDocumentName())
-                .documentType(document.getDocumentType())
-                .build();
-    }
-
     public CreditDTO convertToCreditDTO(Credit credit) {
         CreditDTO creditDTO = CreditDTO.builder()
                 .id(credit.getId())
@@ -38,7 +29,7 @@ public class ToDTO {
                 .monthlyClientIncome(credit.getMonthlyClientIncome())
                 .status(credit.getStatus())
                 .applicationDate(credit.getApplicationDate())
-                // .financialEvaluation(credit.getFinancialEvaluation())
+                 .financialEvaluationId(credit.getFinancialEvaluationId())
                 .userId(credit.getUserId())
                 .build();
 

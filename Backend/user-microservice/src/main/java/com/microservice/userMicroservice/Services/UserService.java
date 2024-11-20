@@ -2,6 +2,7 @@ package com.microservice.userMicroservice.Services;
 
 import com.microservice.userMicroservice.DTOS.UserRequestDataDTO;
 import com.microservice.userMicroservice.DTOS.UserRequestDataResponseDTO;
+import com.microservice.userMicroservice.Entities.Credit;
 import com.microservice.userMicroservice.Entities.User;
 import com.microservice.userMicroservice.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +58,9 @@ public class UserService {
 //    Feign services
     public Optional<User> findUserById(UUID id){
         return  userRepository.findById(id);
+    }
+
+    public List<Credit> getAllCreditsByUserId (UUID userId){
+
     }
 }
