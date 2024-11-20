@@ -28,50 +28,32 @@ public class ToDTO {
     }
 
     public CreditDTO convertToCreditDTO(Credit credit) {
-        System.out.println(credit.toString());
         Optional<User> optionalUser = userClient.findUserById(credit.getUserId());
 
-        if (optionalUser.isPresent() && credit.getFinancialEvaluationId() != null) {
-            Optional<FinancialEvaluation> optionalFinancialEvaluation = financialEvaluationClient.findFinancialEvaluationById(credit.getFinancialEvaluationId());
-            if (optionalFinancialEvaluation.isPresent()) {
-                CreditDTO creditDTO = CreditDTO.builder()
-                        .id(credit.getId())
-                        .creditType(credit.getCreditType())
-                        .requestedAmount(credit.getRequestedAmount())
-                        .totalPriceHome(credit.getTotalPriceHome())
-                        .monthlyClientIncome(credit.getMonthlyClientIncome())
-                        .status(credit.getStatus())
-                        .applicationDate(credit.getApplicationDate())
-                        .financialEvaluation(optionalFinancialEvaluation.get())
-                        .user(optionalUser.get())
-                        .build();
-
-                List<DocumentDTO> documentDTOList = documentClient.getAllDocumentsByCreditId(credit.getId());
-
-                creditDTO.setDocuments(documentDTOList);
-
-                return creditDTO;
-            }
-        }else {
-            CreditDTO creditDTO = CreditDTO.builder()
-                    .id(credit.getId())
-                    .creditType(credit.getCreditType())
-                    .requestedAmount(credit.getRequestedAmount())
-                    .totalPriceHome(credit.getTotalPriceHome())
-                    .monthlyClientIncome(credit.getMonthlyClientIncome())
-                    .status(credit.getStatus())
-                    .applicationDate(credit.getApplicationDate())
-                    .financialEvaluation(null)
-                    .user(optionalUser.get())
-                    .build();
-
-            List<DocumentDTO> documentDTOList = documentClient.getAllDocumentsByCreditId(credit.getId());
-
-            creditDTO.setDocuments(documentDTOList);
-
-            return creditDTO;
+        if (optionalUser.isEmpty()) {
+            throw new IllegalArgumentException("Usuario no encontrado para el crédito con ID: " + credit.getId());
         }
 
-        return null;
+        CreditDTO.CreditDTOBuilder creditDTOBuilder = CreditDTO.builder()
+                .id(credit.getId())
+                .creditType(credit.getCreditType())
+                .requestedAmount(credit.getRequestedAmount())
+                .totalPriceHome(credit.getTotalPriceHome())
+                .monthlyClientIncome(credit.getMonthlyClientIncome())
+                .status(credit.getStatus())
+                .applicationDate(credit.getApplicationDate())
+                .user(optionalUser.get());
+
+        Optional<FinancialEvaluation> optionalFinancialEvaluation = financialEvaluationClient.findFinancialEvaluationByCreditId(credit.getId());
+
+        optionalFinancialEvaluation.ifPresent(creditDTOBuilder::financialEvaluation);
+
+        List<DocumentDTO> documentDTOList = documentClient.getAllDocumentsByCreditId(credit.getId());
+
+        CreditDTO creditDTO = creditDTOBuilder.build();
+
+        creditDTO.setDocuments(documentDTOList);
+
+        return creditDTO;
     }
 }

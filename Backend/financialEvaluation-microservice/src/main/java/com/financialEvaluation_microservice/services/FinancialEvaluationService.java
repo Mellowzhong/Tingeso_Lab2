@@ -54,7 +54,7 @@ public class FinancialEvaluationService {
     }
 
 //    Feing services
-    public Optional<FinancialEvaluation> getFinancialEvaluationById(UUID financialEvaluationID) {
-        return financialEvaluationRepository.findById(financialEvaluationID);
+    public Optional<FinancialEvaluation> findFinancialEvaluationByCreditId(UUID findByCreditId) {
+        return financialEvaluationRepository.findByCreditId(findByCreditId);
     }
 }
