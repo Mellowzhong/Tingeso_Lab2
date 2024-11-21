@@ -6,9 +6,9 @@ spring:
     name: user-microservice
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/userDB
-    username: postgres
-    password: admin
+    url: jdbc:postgresql://user-db-service:5432/userDB # Cambia localhost por el nombre del servicio
+    username: ${DB_USER_USER} # Usa variables inyectadas desde Secrets
+    password: ${DB_PASSWORD_USER} # Usa variables inyectadas desde Secrets
   jpa:
     database: POSTGRESQL
     show-sql: true

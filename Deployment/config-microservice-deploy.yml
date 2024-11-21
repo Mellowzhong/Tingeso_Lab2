@@ -26,11 +26,11 @@ metadata:
   name: config-microservice-service
   labels:
     app: config-microservice-service
-  spec:
-    type: LoadBalancer
-    ports:
-      - port: 8888
-        targetPort: 8888
-        protocol: TCP
-    selector:
-      app: config-microservice-deployment
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8888
+      targetPort: 8888
+      protocol: TCP
+  selector:
+    app: config-microservice-deployment
