@@ -63,11 +63,12 @@ cd ..
 
 
 <!-- Kubernetes -->
-<!-- DB -->
+<!-- DB delete -->
 kubectl delete -f .\postgres-config-map.yaml
 kubectl delete -f .\postgres-secrets.yaml 
 kubectl delete -f .\postgres-dp-sv-pvc.yaml
 
+<!-- Deployment delete -->
 kubectl delete -f .\backend-config-deployment-service.yaml
 kubectl delete -f .\backend-eureka-deployment-service.yaml
 kubectl delete -f .\backend-gateway-deployment-service.yaml
@@ -79,11 +80,19 @@ kubectl delete -f .\ms-document-deploy.yml
 kubectl delete -f .\ms-utils-deploy.yml
 
 <!-- Deployment -->
-<!-- DB -->
+<!-- DB init-->
 kubectl apply -f .\postgres-config-map.yaml
 kubectl apply -f .\postgres-secrets.yaml
-kubectl apply -f postgres-dp-sv-pvc.yaml
+kubectl apply -f .\postgres-dp-sv-pvc.yaml
 
+<!-- Crear las bases de datos -->
+kubectl get pods
+kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE userDB;"
+kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE documentDB;"
+kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE financialEvaluationDB;"
+kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE creditDB;"
+
+<!-- Deploy -->
 kubectl apply -f .\backend-config-deployment-service.yaml
 kubectl apply -f .\backend-eureka-deployment-service.yaml
 kubectl apply -f .\backend-gateway-deployment-service.yaml

@@ -6,4 +6,7 @@ metadata:
     app: postgres-config-map
 data:
   POSTGRES_DB_HOST: postgres
-  POSTGRES_DB_USER: userDB
+  POSTGRES_DB_USER: user-db
+  POSTGRES_DB_FINANCIAL_EVALUATION: financialEvaluation-db
+  POSTGRES_DB_CREDIT: credit-db
+  POSTGRES_DB_DOCUMENT: document-db
