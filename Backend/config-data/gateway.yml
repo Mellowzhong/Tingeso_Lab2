@@ -46,4 +46,3 @@ eureka:
       defaultZone: http://eureka-microservice-service:8761/eureka
   instance:
     preferIpAddress: true
-    ip-address: localhost
