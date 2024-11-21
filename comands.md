@@ -64,9 +64,9 @@ cd ..
 
 <!-- Kubernetes -->
 <!-- DB -->
-kubectl delete -f .\postgres-config-map.yml
-kubectl delete -f .\postgres-secrets.yml 
-kubectl delete -f .\postgres.yml
+kubectl delete -f .\postgres-config-map.yaml
+kubectl delete -f .\postgres-secrets.yaml 
+kubectl delete -f .\postgres-dp-sv-pvc.yaml
 
 kubectl delete -f .\backend-config-deployment-service.yaml
 kubectl delete -f .\backend-eureka-deployment-service.yaml
@@ -80,9 +80,9 @@ kubectl delete -f .\ms-utils-deploy.yml
 
 <!-- Deployment -->
 <!-- DB -->
-kubectl apply -f .\postgres-config-map.yml
-kubectl apply -f .\postgres-secrets.yml
-kubectl apply -f .\postgres.yml
+kubectl apply -f .\postgres-config-map.yaml
+kubectl apply -f .\postgres-secrets.yaml
+kubectl apply -f postgres-dp-sv-pvc.yaml
 
 kubectl apply -f .\backend-config-deployment-service.yaml
 kubectl apply -f .\backend-eureka-deployment-service.yaml
