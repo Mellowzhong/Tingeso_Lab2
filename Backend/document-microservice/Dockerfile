@@ -13,6 +13,6 @@ FROM openjdk:17-jdk-slim
 WORKDIR /home/app
 
 # Copiar el archivo JAR generado desde la etapa de construcción
-COPY --from=build /home/app/target/user-microservice-0.0.1-SNAPSHOT.jar user-microservice.jar
+COPY --from=build /home/app/target/document-microservice-0.0.1-SNAPSHOT.jar document-microservice.jar
 
-ENTRYPOINT ["java", "-jar", "user-microservice.jar"]
+ENTRYPOINT ["java", "-jar", "document-microservice.jar"]
