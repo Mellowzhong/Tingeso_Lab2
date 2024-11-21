@@ -1,22 +1,22 @@
 <!-- Backend -->
 cd .\Backend\
 
-cd .\config\
+cd .\backend-config\
 mvn clean install
 docker build -t mellow03/backend-config .
 docker push mellow03/backend-config
 cd ..
 
-cd .\eureka\
+cd .\backend-eureka\
 mvn clean install
 docker build -t mellow03/backend-eureka .
 docker push mellow03/backend-eureka
 cd ..
 
-cd .\gateway\
+cd .\backend-gateway\
 mvn clean install
-docker build -t mellow03/gateway-microservice:latest .
-docker push mellow03/gateway-microservice:latest
+docker build -t mellow03/backend-gateway .
+docker push mellow03/backend-gateway:latest
 cd ..
 
 cd .\user-microservice\
@@ -68,10 +68,10 @@ kubectl delete -f .\postgres-config-map.yml
 kubectl delete -f .\postgres-secrets.yml 
 kubectl delete -f .\postgres.yml
 
-kubectl delete -f .\config-microservice-deploy.yml
-kubectl delete -f .\eureka-microservice-deploy.yml
-kubectl delete -f .\gateway-microservice-deploy.yml
-kubectl delete -f .\ms-user-deploy.yml
+kubectl delete -f .\backend-config-deployment-service.yaml
+kubectl delete -f .\backend-eureka-deployment-service.yaml
+kubectl delete -f .\backend-gateway-deployment-service.yaml
+kubectl delete -f .\ms-user-deploy.yaml
 kubectl delete -f .\ms-document-deploy.yml
 kubectl delete -f .\ms-financial-evaluation-deploy.yml
 kubectl delete -f .\ms-credit-deploy.yml
@@ -84,10 +84,10 @@ kubectl apply -f .\postgres-config-map.yml
 kubectl apply -f .\postgres-secrets.yml
 kubectl apply -f .\postgres.yml
 
-kubectl apply -f .\backend-config-deployment-service.yml
-kubectl apply -f .\backend-eureka-deployment-service.yml
-kubectl apply -f .\gateway-microservice-deploy.yml
-kubectl apply -f .\ms-user-deploy.yml
+kubectl apply -f .\backend-config-deployment-service.yaml
+kubectl apply -f .\backend-eureka-deployment-service.yaml
+kubectl apply -f .\backend-gateway-deployment-service.yaml
+kubectl apply -f .\ms-user-deploy.yaml
 kubectl apply -f .\ms-document-deploy.yml
 kubectl apply -f .\ms-financial-evaluation-deploy.yml
 kubectl apply -f .\ms-credit-deploy.yml

@@ -11,12 +11,12 @@
         <module name="documentMicroservice" />
         <module name="credit-microservice" />
         <module name="financialEvaluation-microservice" />
-        <module name="eureka" />
         <module name="utils-microservice" />
+        <module name="backend-eureka" />
         <module name="userMicroservice" />
-        <module name="config" />
+        <module name="backend-gateway" />
         <module name="user-microservice" />
-        <module name="gateway" />
+        <module name="backend-config" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -28,16 +28,16 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="config" options="-parameters" />
+      <module name="backend-config" options="-parameters" />
+      <module name="backend-eureka" options="-parameters" />
+      <module name="backend-gateway" options="-parameters" />
       <module name="credit-microservice" options="-parameters" />
       <module name="creditMicroservice" options="-parameters" />
       <module name="document-microservice" options="-parameters" />
       <module name="documentMicroservice" options="-parameters" />
       <module name="documentMicroservice (1)" options="-parameters" />
       <module name="documentMicroservice (2)" options="-parameters" />
-      <module name="eureka" options="-parameters" />
       <module name="financialEvaluation-microservice" options="-parameters" />
-      <module name="gateway" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="user-microservice" options="-parameters" />
       <module name="userMicroservice" options="-parameters" />

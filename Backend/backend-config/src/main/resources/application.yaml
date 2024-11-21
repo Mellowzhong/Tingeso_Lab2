@@ -7,6 +7,6 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Mellowzhong/Tingeso_Lab2
           default-label: main
+          uri: https://github.com/Mellowzhong/Tingeso_Lab2
           search-paths: "config-data"

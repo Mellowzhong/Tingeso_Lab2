@@ -18,9 +18,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>gateway</module>
-        <module>eureka</module>
-        <module>config</module>
+        <module>backend-gateway</module>
+        <module>backend-eureka</module>
+        <module>backend-config</module>
         <module>user-microservice</module>
         <module>credit-microservice</module>
         <module>utils-microservice</module>
