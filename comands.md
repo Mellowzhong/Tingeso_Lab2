@@ -3,14 +3,14 @@ cd .\Backend\
 
 cd .\config\
 mvn clean install
-docker build -t mellow03/config-microservice:latest .
-docker push mellow03/config-microservice:latest
+docker build -t mellow03/backend-config .
+docker push mellow03/backend-config
 cd ..
 
 cd .\eureka\
 mvn clean install
-docker build -t mellow03/eureka-microservice:latest .
-docker push mellow03/eureka-microservice:latest
+docker build -t mellow03/backend-eureka .
+docker push mellow03/backend-eureka
 cd ..
 
 cd .\gateway\
@@ -84,8 +84,8 @@ kubectl apply -f .\postgres-config-map.yml
 kubectl apply -f .\postgres-secrets.yml
 kubectl apply -f .\postgres.yml
 
-kubectl apply -f .\config-microservice-deploy.yml
-kubectl apply -f .\eureka-microservice-deploy.yml
+kubectl apply -f .\backend-config-deployment-service.yml
+kubectl apply -f .\backend-eureka-deployment-service.yml
 kubectl apply -f .\gateway-microservice-deploy.yml
 kubectl apply -f .\ms-user-deploy.yml
 kubectl apply -f .\ms-document-deploy.yml
