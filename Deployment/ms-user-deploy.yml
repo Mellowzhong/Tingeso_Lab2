@@ -18,34 +18,36 @@ spec:
           ports:
             - containerPort: 8080
           env:
+            - name: SERVER_PORT
+              value: "0"
             # Variables desde ConfigMap (no sensibles)
-            - name: DB_HOST_USER
+            - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
                   name: postgres-config-map # Nombre del ConfigMap definido anteriormente.
                   key: DB_HOST_USER
 
-            - name: DB_PORT_USER
+            - name: DB_PORT
               valueFrom:
                 configMapKeyRef:
                   name: postgres-config-map # Nombre del ConfigMap definido anteriormente.
                   key: DB_PORT_USER
 
-            - name: DB_DBNAME_USER
+            - name: DB_DBNAME
               valueFrom:
                 configMapKeyRef:
                   name: postgres-config-map # Nombre del ConfigMap definido anteriormente.
                   key: DB_DBNAME_USER
 
             # Variables desde Secret (sensibles)
-            - name: DB_USER_USER
+            - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: postgres-secrets # Nombre del Secret definido anteriormente.
-                  key: DB_USER_USER
+                  name: postgres-credentials # Nombre del Secret definido anteriormente.
+                  key: DB_USER_USER_DB
 
-            - name: DB_PASSWORD_USER
+            - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres-secrets # Nombre del Secret definido anteriormente.
-                  key: DB_PASSWORD_USER
+                  name: postgres-credentials # Nombre del Secret definido anteriormente.
+                  key: DB_PASSWORD_USER_DB
