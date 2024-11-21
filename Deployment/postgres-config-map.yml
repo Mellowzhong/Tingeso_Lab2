@@ -5,6 +5,5 @@ metadata:
   labels:
     app: postgres-config-map
 data:
-  DB_HOST_USER: user-db-service
-  DB_PORT_USER: "5432"
-  DB_DBNAME_USER: userDB
+  POSTGRES_DB_HOST: postgres
+  POSTGRES_DB_USER: userDB

@@ -20,19 +20,32 @@ spec:
           env:
             - name: SERVER_PORT
               value: "0"
+
             # Variables desde ConfigMap (no sensibles)
-            - name: DB_HOST
-              value: user-db-service
+            - name: POSTGRES_DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config-map
+                  key: POSTGRES_DB_HOST
 
             - name: DB_PORT
               value: "5432"
 
-            - name: DB_DBNAME
-              value: userDB
+            - name: POSTGRES_DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config-map
+                  key: POSTGRES_DB_USER
 
             # Variables desde Secret (sensibles)
             - name: DB_USER
-              value: postgres
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES_USER
 
             - name: DB_PASSWORD
-              value: admin
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES_PASSWORD
