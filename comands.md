@@ -25,12 +25,6 @@ docker build -t mellow03/user-microservice:latest .
 docker push mellow03/user-microservice:latest
 cd ..
 
-cd .\document-microservice\
-mvn clean install
-docker build -t mellow03/document-microservice:latest .
-docker push mellow03/document-microservice:latest
-cd ..
-
 cd .\financialEvaluation-microservice\
 mvn clean install
 docker build -t mellow03/financial-evaluation-microservice:latest .
@@ -87,10 +81,14 @@ kubectl apply -f .\postgres-dp-sv-pvc.yaml
 
 <!-- Crear las bases de datos -->
 kubectl get pods
-kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE userDB;"
-kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE documentDB;"
-kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE financialEvaluationDB;"
-kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE creditDB;"
+kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE dbuser;"
+kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE dbfinancialevaluation;"
+kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE dbfinancialevaluation;"
+kubectl exec -it <postgres-pod-name> -- psql -U postgres -d postgres -c "CREATE DATABASE dbcredit;"
+
+kubectl exec -it <postgres-pod-name> -- psql -U postgres
+
+\l
 
 <!-- Deploy -->
 kubectl apply -f .\backend-config-deployment-service.yaml
