@@ -16,38 +16,23 @@ spec:
         - name: user-microservice-container
           image: mellow03/user-microservice:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 9090
           env:
             - name: SERVER_PORT
               value: "0"
             # Variables desde ConfigMap (no sensibles)
             - name: DB_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config-map # Nombre del ConfigMap definido anteriormente.
-                  key: DB_HOST_USER
+              value: user-db-service
 
             - name: DB_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config-map # Nombre del ConfigMap definido anteriormente.
-                  key: DB_PORT_USER
+              value: "5432"
 
             - name: DB_DBNAME
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config-map # Nombre del ConfigMap definido anteriormente.
-                  key: DB_DBNAME_USER
+              value: userDB
 
             # Variables desde Secret (sensibles)
             - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials # Nombre del Secret definido anteriormente.
-                  key: DB_USER_USER_DB
+              value: postgres
 
             - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials # Nombre del Secret definido anteriormente.
-                  key: DB_PASSWORD_USER_DB
+              value: admin

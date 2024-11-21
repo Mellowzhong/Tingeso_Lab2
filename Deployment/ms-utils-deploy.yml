@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: utils-microservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: utils-microservice-deployment
+  template:
+    metadata:
+      labels:
+        app: utils-microservice-deployment
+    spec:
+      containers:
+        - name: utils-microservice-container
+          image: mellow03/utils-microservice:latest
+          ports:
+            - containerPort: 9090
+          env:
+            - name: SERVER_PORT
+              value: "0"

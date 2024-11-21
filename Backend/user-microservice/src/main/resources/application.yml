@@ -2,4 +2,4 @@ spring:
   application:
     name: user-microservice
   config:
-    import: optional:configserver:http://config-server-service:8888
+    import: optional:configserver:http://config-microservice-service:8888

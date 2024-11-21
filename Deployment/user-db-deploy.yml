@@ -87,4 +87,4 @@ spec:
   selector:
     app: user-db-deployment
     tier: database
-  type: LoadBalancer
+  type: ClusterIP

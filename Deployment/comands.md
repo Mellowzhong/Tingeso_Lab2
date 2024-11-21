@@ -70,8 +70,8 @@ kubectl delete -f .\user-db-deploy.yml
 <!-- Microservices -->
 kubectl delete -f .\config-microservice-deploy.yml
 kubectl delete -f .\eureka-microservice-deploy.yml
-kubectl delete -f .\ms-user-deploy.yml
 kubectl delete -f .\gateway-microservice-deploy.yml
+kubectl delete -f .\ms-user-deploy.yml
 kubectl delete -f .\ms-document-deploy.yml
 kubectl delete -f .\ms-financial-evaluation-deploy.yml
 kubectl delete -f .\ms-credit-deploy.yml
