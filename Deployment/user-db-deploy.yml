@@ -55,15 +55,11 @@ spec:
             - containerPort: 5432
           env:
             - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials
-                  key: DB_USER_USER_DB
+              value: postgres
             - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials
-                  key: DB_PASSWORD_USER_DB
+              value: admin
+            - name: POSTGRES_DB
+              value: userDB
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: user-db-data
@@ -87,4 +83,4 @@ spec:
   selector:
     app: user-db-deployment
     tier: database
-  type: ClusterIP
+  type: LoadBalancer
