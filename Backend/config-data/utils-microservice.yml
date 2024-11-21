@@ -10,6 +10,6 @@ eureka:
     preferIpAddress: true
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka-microservice-service:8761/eureka
     fetch-registry: true
     register-with-eureka: true

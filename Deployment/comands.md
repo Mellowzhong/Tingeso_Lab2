@@ -67,7 +67,7 @@ cd ..
 kubectl delete -f .\postgres-config-map.yml
 kubectl delete -f .\postgres-secrets.yml 
 kubectl delete -f .\user-db-deploy.yml
-<!-- Microservices -->
+
 kubectl delete -f .\config-microservice-deploy.yml
 kubectl delete -f .\eureka-microservice-deploy.yml
 kubectl delete -f .\gateway-microservice-deploy.yml
@@ -84,7 +84,6 @@ kubectl apply -f .\postgres-config-map.yml
 kubectl apply -f .\postgres-secrets.yml
 kubectl apply -f .\user-db-deploy.yml
 
-<!-- Microservices -->
 kubectl apply -f .\config-microservice-deploy.yml
 kubectl apply -f .\eureka-microservice-deploy.yml
 kubectl apply -f .\gateway-microservice-deploy.yml

@@ -6,9 +6,9 @@ spring:
     name: user-microservice
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_DBNAME} # Cambia localhost por el nombre del servicio
-    username: ${DB_USER} # Usa variables inyectadas desde Secrets
-    password: ${DB_PASSWORD} # Usa variables inyectadas desde Secrets
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_DBNAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     database: POSTGRESQL
     show-sql: true
@@ -19,6 +19,6 @@ eureka:
     preferIpAddress: true
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka-microservice-service:8761/eureka
     fetch-registry: true
     register-with-eureka: true
