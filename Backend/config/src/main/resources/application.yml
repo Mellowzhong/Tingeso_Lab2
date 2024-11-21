@@ -10,4 +10,4 @@ spring:
         git:
           uri: https://github.com/Mellowzhong/Tingeso_Lab2
           default-label: main
-          search-paths: backend/config-data
+          search-paths: config-data

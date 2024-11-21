@@ -19,6 +19,9 @@ spec:
           image: mellow03/eureka-microservice:latest
           ports:
             - containerPort: 8761
+          env:
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://backend-config-microservice-service:8888
 ---
 apiVersion: v1
 kind: Service
