@@ -2,7 +2,7 @@
 cd .\Backend\
 
 cd .\backend-config\
-mvn clean install -DskipITs
+mvn clean install
 docker build -t mellow03/backend-config .
 docker push mellow03/backend-config
 cd ..
