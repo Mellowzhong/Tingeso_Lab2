@@ -15,14 +15,18 @@
         <module name="backend-eureka" />
         <module name="userMicroservice" />
         <module name="backend-gateway" />
+        <module name="requestTracking" />
         <module name="user-microservice" />
         <module name="backend-config" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="config" target="17" />
       <module name="creditMicroservice" target="17" />
       <module name="documentMicroservice (1)" target="17" />
       <module name="documentMicroservice (2)" target="17" />
+      <module name="eureka" target="17" />
+      <module name="gateway" target="17" />
       <module name="gateway-service" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -39,6 +43,7 @@
       <module name="documentMicroservice (2)" options="-parameters" />
       <module name="financialEvaluation-microservice" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
+      <module name="requestTracking" options="-parameters" />
       <module name="user-microservice" options="-parameters" />
       <module name="userMicroservice" options="-parameters" />
       <module name="utils-microservice" options="-parameters" />

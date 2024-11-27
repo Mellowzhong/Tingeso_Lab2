@@ -1,22 +1,21 @@
-package com.credit_microservice.entities;
+package com.requestTracking.DTOS;
 
-import jakarta.persistence.*;
+import com.requestTracking.entities.FinancialEvaluation;
+import com.requestTracking.entities.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "credit")
-public class Credit {
-    @Id
-    @Column(name = "id", unique = true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.UUID)
+@Builder
+public class CreditDTO {
     private UUID id;
     private String creditType;
     private Integer requestedAmount;
@@ -24,6 +23,7 @@ public class Credit {
     private Integer monthlyClientIncome;
     private String status;
     private Date applicationDate;
-    private UUID userId;
-    private UUID financialEvaluationId;
+    private User user;
+    private List<DocumentDTO> documents;
+    private FinancialEvaluation financialEvaluation;
 }
