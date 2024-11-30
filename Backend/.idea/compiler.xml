@@ -13,9 +13,9 @@
         <module name="financialEvaluation-microservice" />
         <module name="utils-microservice" />
         <module name="backend-eureka" />
+        <module name="requestTracking-microservice" />
         <module name="userMicroservice" />
         <module name="backend-gateway" />
-        <module name="requestTracking" />
         <module name="user-microservice" />
         <module name="backend-config" />
       </profile>
@@ -43,7 +43,7 @@
       <module name="documentMicroservice (2)" options="-parameters" />
       <module name="financialEvaluation-microservice" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
-      <module name="requestTracking" options="-parameters" />
+      <module name="requestTracking-microservice" options="-parameters" />
       <module name="user-microservice" options="-parameters" />
       <module name="userMicroservice" options="-parameters" />
       <module name="utils-microservice" options="-parameters" />

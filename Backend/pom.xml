@@ -26,7 +26,7 @@
         <module>utils-microservice</module>
         <module>document-microservice</module>
         <module>financialEvaluation-microservice</module>
-        <module>requestTracking</module>
+        <module>requestTracking-microservice</module>
     </modules>
 
     <properties>
