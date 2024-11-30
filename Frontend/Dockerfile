@@ -15,7 +15,9 @@ RUN npm run build
 FROM nginx:latest
 # Copiar los archivos construidos al servidor Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
+# Copiar los archivos de configuración de Nginx
+COPY /nginx/conf.d /etc/nginx/conf.d
 # Exponer el puerto 80
-EXPOSE 80
+EXPOSE 3000
 # Comando para ejecutar Nginx en primer plano
 CMD ["nginx", "-g", "daemon off;"]
