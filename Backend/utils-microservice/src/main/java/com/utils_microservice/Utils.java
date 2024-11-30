@@ -1,8 +1,12 @@
 package com.utils_microservice;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import com.utils_microservice.DTO.CalculateCreditSimulationDTO;
 import com.utils_microservice.DTO.CalculateDebtToIncomeRatioDTO;
+import com.utils_microservice.DTO.TotalCostDTO;
 import com.utils_microservice.response.SimulationResponse;
+import com.utils_microservice.response.TotalCostResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,5 +78,29 @@ public class Utils {
                     .message("No esta dentro del rango")
                     .build();
         }
+    }
+
+    @PostMapping("/totalCost")
+    public TotalCostResponse getTotalCost(@RequestBody TotalCostDTO totalCostDTO) {
+        int creditAmount = totalCostDTO.getCreditAmount();
+        int numberOfPays = totalCostDTO.getNumberOfPays();
+        int quote = totalCostDTO.getQuote();
+
+        BigDecimal creditAmountBD = BigDecimal.valueOf(creditAmount);
+        BigDecimal quoteBD = BigDecimal.valueOf(quote);
+
+        BigDecimal creditLifeInsurance = creditAmountBD.multiply(BigDecimal.valueOf(0.0003));
+        BigDecimal administrationFee = creditAmountBD.multiply(BigDecimal.valueOf(0.01));
+        BigDecimal fixedFee = BigDecimal.valueOf(20000);
+
+        BigDecimal aux = quoteBD.add(creditLifeInsurance).add(fixedFee);
+        BigDecimal totalCost = aux.multiply(BigDecimal.valueOf(numberOfPays))
+                .add(administrationFee);
+
+        totalCost = totalCost.setScale(2, RoundingMode.HALF_UP);
+
+        return TotalCostResponse.builder()
+                .totalCost(totalCost.doubleValue())
+                .build();
     }
 }

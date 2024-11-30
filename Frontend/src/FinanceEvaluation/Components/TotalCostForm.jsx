@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { getSimulation } from '../../Simulation/Services/SimulationServices';
+import { getSimulation, getTotalCost } from '../../Simulation/Services/SimulationServices';
 
 function TotalCostForm({ creditAmount, simulatedInterestRate, numberOfPays, totalPriceHome, creditType }) {
     const [totalCost, setTotalCost] = useState(0);
 
     const handleSimulationSubmit = async (e) => {
         e.preventDefault();
-        const creditLifeInsurance = Math.round(creditAmount * 0.0003);
-        const administrationFee = creditAmount * 0.01;
 
         const simulationData = {
             creditAmount,
@@ -20,11 +18,11 @@ function TotalCostForm({ creditAmount, simulatedInterestRate, numberOfPays, tota
 
         // Simulación
         try {
-            const response = await getSimulation(simulationData);
-            const aux = response.quote + creditLifeInsurance + 20000;
+            const { quote } = await getSimulation(simulationData);
+            const { totalCost } = await getTotalCost(creditAmount, numberOfPays, quote);
 
             // Cálculo del costo total
-            setTotalCost(aux * numberOfPays + administrationFee);
+            setTotalCost(totalCost);
         }
         catch {
             alert("Error al simular");

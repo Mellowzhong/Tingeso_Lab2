@@ -51,8 +51,7 @@ cd ..
 
 <!-- Frontend -->
 cd .\Frontend\
-docker build -t mellow03/frontend:latest .
-docker push mellow03/frontend:latest
+docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/frontend:latest --push .
 cd ..
 
 

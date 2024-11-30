@@ -12,3 +12,12 @@ export const getSimulation = async (simulationData) => {
     console.error("Error getting simulation", error);
   }
 };
+
+export const getTotalCost = async () => {
+  try {
+    const response = await api.get("/utils/totalCost");
+    return response.data;
+  } catch (error) {
+    console.error("Error getting total cost", error);
+  }
+};

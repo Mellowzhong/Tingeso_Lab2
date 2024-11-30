@@ -23,10 +23,9 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowed-origin-patterns: '*'
-            allowed-methods: "*"
-            allowed-headers: "*"
-            allow-credentials: true
+            allowedOrigins: '*'
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
         - id: user-microservice
           uri: lb://user-microservice
