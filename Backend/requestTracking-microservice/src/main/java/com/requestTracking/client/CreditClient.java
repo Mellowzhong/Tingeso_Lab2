@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.UUID;
 
-@FeignClient(name = "credit-microservice")
+@FeignClient(value = "credit-microservice", path = "/credit", configuration = {FeignClient.class})
 public interface CreditClient {
-    @GetMapping("credit/get/{user_id}")
+    @GetMapping("/get/{user_id}")
     List<CreditDTO> getCreditByUserId(@PathVariable("user_id") UUID user_id);
 }
