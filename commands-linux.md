@@ -106,7 +106,7 @@ kubectl apply -f frontend-deployment-service.yaml
 kubectl get pods
 
 kubectl port-forward <nombre-pod> <puerto-local>:<puerto-contenedor>
-kubectl port-forward backend-gateway-deployment-866d6d9f95-6h2lr 8080:8080
+kubectl port-forward backend-gateway-deployment-866d6d9f95-w4bqn 8080:8080
 
 minikube service frontend
 minikube tunnel

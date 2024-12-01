@@ -5,11 +5,11 @@ import com.document_microservice.DTOS.DocumentDTO;
 import com.document_microservice.entities.Document;
 import com.document_microservice.repositories.DocumentRepository;
 import com.document_microservice.utils.ToDTO;
-import com.document_microservice.client.CreditClient;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
@@ -24,18 +24,23 @@ import java.util.stream.Collectors;
 public class DocumentService {
     private final DocumentRepository documentRepository;
     private final ToDTO toDTO; // Inyectar la clase de utilidades
-    private final CreditClient creditClient;
+//    private final CreditClient creditClient;
+    final String creditURL = "http://credit-microservice/credit";
 
     @Autowired
-    public DocumentService(DocumentRepository documentRepository, ToDTO toDTO, CreditClient creditClient) {
+    RestTemplate restTemplate;
+
+    @Autowired
+    public DocumentService(DocumentRepository documentRepository, ToDTO toDTO) {
         this.documentRepository = documentRepository;
         this.toDTO = toDTO;
-        this.creditClient = creditClient;
     }
 
     public Document saveDocument(MultipartFile file, String typeCredit, UUID credit_id) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        Optional<CreditDTO> creditOptional = creditClient.getCreditById(credit_id);
+//        Optional<CreditDTO> creditOptional = creditClient.getCreditById(credit_id);
+        Optional<CreditDTO> creditOptional = restTemplate.getForObject(creditURL + "/getCredit/" +credit_id, Optional.class);
+
 
         if (creditOptional.isPresent()) {
             CreditDTO credit = creditOptional.get();

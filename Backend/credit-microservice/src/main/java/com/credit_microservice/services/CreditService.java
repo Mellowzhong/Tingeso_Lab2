@@ -1,13 +1,13 @@
 package com.credit_microservice.services;
 
 import com.credit_microservice.DTOS.CreditDTO;
-import com.credit_microservice.client.UserClient;
 import com.credit_microservice.entities.User;
 import com.credit_microservice.entities.Credit;
 import com.credit_microservice.repositories.CreditRepository;
 import com.credit_microservice.utils.ToDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,19 +18,22 @@ import java.util.stream.Collectors;
 @Service
 public class CreditService {
     private final CreditRepository creditRepository;
-    private final UserClient userClient;
+//    private final UserClient userClient;
+    final String userURL = "http://user-microservice/user";
     private final ToDTO toDTO; // Instancia de la clase de utilidades
 
     @Autowired
-    public CreditService(CreditRepository creditRepository, UserClient userClient, ToDTO toDTO) {
+    RestTemplate restTemplate;
+
+    @Autowired
+    public CreditService(CreditRepository creditRepository, ToDTO toDTO) {
         this.creditRepository = creditRepository;
-        this.userClient = userClient;
         this.toDTO = toDTO;
     }
 
     public UUID addCredit(Credit credit, UUID user_id) {
-        Optional<User> optionalUser = userClient.findUserById(user_id);
-
+//        Optional<User> optionalUser = userClient.findUserById(user_id);
+        Optional<User> optionalUser = restTemplate.getForObject(userURL+ "/getById/" + user_id, Optional.class);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             credit.setUserId(user.getId());
