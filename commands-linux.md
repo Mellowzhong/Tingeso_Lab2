@@ -79,7 +79,7 @@ kubectl apply -f postgres-dp-sv-pvc.yaml
 
 <!-- Crear las bases de datos en el pod -->
 kubectl get pods
-kubectl exec -it postgres-67dbbf56f4-kbdvw -- psql -U postgres
+kubectl exec -it postgres-67dbbf56f4-5k2gb -- psql -U postgres
 
 <!-- Crear las bases de datos -->
 CREATE DATABASE dbuser;
@@ -106,7 +106,7 @@ kubectl apply -f frontend-deployment-service.yaml
 kubectl get pods
 
 kubectl port-forward <nombre-pod> <puerto-local>:<puerto-contenedor>
-kubectl port-forward backend-gateway-deployment-866d6d9f95-fwb7w 8080:8080
+kubectl port-forward backend-gateway-deployment-866d6d9f95-6h2lr 8080:8080
 
 minikube service frontend
 minikube tunnel

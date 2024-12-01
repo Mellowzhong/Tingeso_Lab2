@@ -7,8 +7,7 @@ eureka:
     service-url:
       default-zone: http://backend-eureka:8761/eureka
   instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
-    hostname: document-microservice
+    preferIpAddress: true
 
 management:
   endpoints:
