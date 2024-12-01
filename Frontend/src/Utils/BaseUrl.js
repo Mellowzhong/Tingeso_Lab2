@@ -7,7 +7,7 @@ console.log(baseURL);
 
 // Configura Axios con la baseURL
 const api = axios.create({
-  baseURL: `http://127.0.0.1:56079`,
+  baseURL: `http://localhost:8080`,
   headers: {
     "Content-type": "application/json",
   },

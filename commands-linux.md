@@ -101,3 +101,12 @@ kubectl apply -f ms-credit-deploy.yaml
 kubectl apply -f ms-utils-deploy.yaml
 kubectl apply -f ms-request-tracking-deploy.yaml
 kubectl apply -f frontend-deployment-service.yaml
+
+<!-- Ultimas configuraciones -->
+kubectl get pods
+
+kubectl port-forward <nombre-pod> <puerto-local>:<puerto-contenedor>
+kubectl port-forward backend-gateway-deployment-866d6d9f95-fwb7w 8080:8080
+
+minikube service frontend
+minikube tunnel
