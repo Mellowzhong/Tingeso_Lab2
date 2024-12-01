@@ -17,7 +17,7 @@ FROM nginx:latest
 COPY --from=build /app/dist /usr/share/nginx/html
 # Copiar los archivos de configuración de Nginx
 COPY /nginx/conf.d /etc/nginx/conf.d
-# Exponer el puerto 80
+# Exponer el puerto 3000
 EXPOSE 3000
 # Comando para ejecutar Nginx en primer plano
 CMD ["nginx", "-g", "daemon off;"]

@@ -1,50 +1,43 @@
-server:
-  port: 8080
-
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      default-zone: http://backend-eureka:8761/eureka
-  instance:
-    hostname: localhost
-
-spring:
-  application:
-    name: gateway
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowed-origin-patterns: '*'
-            allowed-methods: "*"
-            allowed-headers: "*"
-            allow-credentials: true
-      routes:
-        - id: user-microservice
-          uri: lb://user-microservice
-          predicates:
-            - Path=/user/**
-        - id: credit-microservice
-          uri: lb://credit-microservice
-          predicates:
-            - Path=/credit/**
-        - id: document-microservice
-          uri: lb://document-microservice
-          predicates:
-            - Path=/document/**
-        - id: financialEvaluation-microservice
-          uri: lb://financialEvaluation-microservice
-          predicates:
-            - Path=/financialEvaluation/**
-        - id: utils-microservice
-          uri: lb://utils-microservice
-          predicates:
-            - Path=/utils/**
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-gateway-deployment
+  labels:
+    app: backend-gateway-deployment
+spec:
+  selector:
+    matchLabels:
+      app: backend-gateway-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: backend-gateway-deployment
+    spec:
+      containers:
+        - name: backend-gateway
+          image: mellow03/backend-gateway:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://backend-config:8081
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://backend-eureka:8761
+            - name: eureka.instance.preferIpAddress
+              value: "true"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-gateway
+  labels:
+    app: backend-gateway
+spec:
+  selector:
+    app: backend-gateway-deployment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
