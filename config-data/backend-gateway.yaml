@@ -51,4 +51,4 @@ spring:
         - id: requestTracking-microservice
           uri: lb://requestTracking-microservice
           predicates:
-            - Path=/utils/**
+            - Path=/requestTracking/**
