@@ -33,33 +33,29 @@ public class FinancialEvaluationService {
 
     public ResponseEntity<FinancialEvaluation> saveFinancialEvaluation(UUID creditID, FinancialEvaluation financialEvaluation) {
 //        Optional<CreditDTO> optionalCredit = creditClient.getCreditById(creditID);
-        Optional<CreditDTO> optionalCredit = restTemplate.getForObject(creditURL + "/getCredit/" +creditID, Optional.class);
+        CreditDTO credit = restTemplate.getForObject(creditURL + "/getCredit/" + creditID, CreditDTO.class);
 
-        if (optionalCredit.isPresent()) {
-            CreditDTO credit = optionalCredit.get();
-            credit.setFinancialEvaluationId(financialEvaluation.getId());
-            financialEvaluation.setCreditId(credit.getId());
-            return new ResponseEntity<>(financialEvaluationRepository.save(financialEvaluation), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        credit.setFinancialEvaluationId(financialEvaluation.getId());
+        financialEvaluation.setCreditId(credit.getId());
+        return new ResponseEntity<>(financialEvaluationRepository.save(financialEvaluation), HttpStatus.OK);
+
     }
 
     public ResponseEntity<FinancialEvaluation> updateFinancialEvaluation(UUID creditID, UUID financialEvaluationID,FinancialEvaluation financialEvaluation) {
 //        Optional<CreditDTO> optionalCredit = creditClient.getCreditById(creditID);
-        Optional<CreditDTO> optionalCredit = restTemplate.getForObject(creditURL + "/getCredit/" +creditID, Optional.class);
-        if (optionalCredit.isPresent()) {
-            Optional<FinancialEvaluation> getterFinancialEvaluation = financialEvaluationRepository.findById(financialEvaluationID);
-            if (getterFinancialEvaluation.isPresent()) {
-                financialEvaluation.setId(getterFinancialEvaluation.get().getId());
-                financialEvaluation.setCreditId(optionalCredit.get().getId());
-                return new ResponseEntity<>(financialEvaluationRepository.save(financialEvaluation), HttpStatus.OK);
-            }
+        CreditDTO optionalCredit = restTemplate.getForObject(creditURL + "/getCredit/" +creditID, CreditDTO.class);
+
+        Optional<FinancialEvaluation> getterFinancialEvaluation = financialEvaluationRepository.findById(financialEvaluationID);
+        if (getterFinancialEvaluation.isPresent()) {
+            financialEvaluation.setId(getterFinancialEvaluation.get().getId());
+            financialEvaluation.setCreditId(optionalCredit.getId());
+            return new ResponseEntity<>(financialEvaluationRepository.save(financialEvaluation), HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 //    Feing services
-    public Optional<FinancialEvaluation> findFinancialEvaluationByCreditId(UUID findByCreditId) {
-        return financialEvaluationRepository.findByCreditId(findByCreditId);
+    public FinancialEvaluation findFinancialEvaluationByCreditId(UUID findByCreditId) {
+        return financialEvaluationRepository.findByCreditId(findByCreditId).get();
     }
 }

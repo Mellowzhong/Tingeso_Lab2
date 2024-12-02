@@ -27,9 +27,9 @@ public class RequestTrackingService {
         this.toDTO = toDTO;
     }
 
-    public List<RequestTracking> getAllRequestTracking(UUID userId) {
+    public List<RequestTracking> getAllRequestTracking() {
 //        List<CreditDTO> creditDTOList = creditClient.getCreditByUserId(userId);
-        List<CreditDTO> creditDTOList = restTemplate.getForObject(creditURL + "/get/" + userId, List.class);
+        List<CreditDTO> creditDTOList = restTemplate.getForObject(creditURL + "/getAll", List.class);
 
         return creditDTOList.stream()
                 .map(toDTO::convertToCreditDTO)

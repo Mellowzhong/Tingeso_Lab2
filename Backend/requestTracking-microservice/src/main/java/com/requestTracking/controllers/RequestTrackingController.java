@@ -21,8 +21,8 @@ public class RequestTrackingController {
         this.requestTrackingService = requestTrackingService;
     }
 
-    @GetMapping("/get/{userId}")
-    public List<RequestTracking> getAllRequestTracking (@PathVariable UUID userId){
-        return requestTrackingService.getAllRequestTracking(userId);
+    @GetMapping("/getAll")
+    public List<RequestTracking> getAllRequestTracking (){
+        return requestTrackingService.getAllRequestTracking();
     }
 }

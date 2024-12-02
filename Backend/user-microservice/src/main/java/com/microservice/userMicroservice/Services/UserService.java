@@ -57,7 +57,8 @@ public class UserService {
 
 
 //    Feign services
-    public Optional<User> findUserById(UUID id){
-        return  userRepository.findById(id);
+    public User findUserById(UUID id){
+
+        return  userRepository.findById(id).get();
     }
 }

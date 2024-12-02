@@ -39,23 +39,17 @@ public class DocumentService {
     public Document saveDocument(MultipartFile file, String typeCredit, UUID credit_id) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 //        Optional<CreditDTO> creditOptional = creditClient.getCreditById(credit_id);
-        Optional<CreditDTO> creditOptional = restTemplate.getForObject(creditURL + "/getCredit/" +credit_id, Optional.class);
+        CreditDTO credit = restTemplate.getForObject(creditURL + "/getCredit/" + credit_id, CreditDTO.class);
 
+        Document document = Document.builder()
+                .documentName(fileName)
+                .documentType(file.getContentType())
+                .data(file.getBytes())
+                .typeCreditDocument(typeCredit)
+                .creditId(credit.getId())
+                .build();
 
-        if (creditOptional.isPresent()) {
-            CreditDTO credit = creditOptional.get();
-            Document document = Document.builder()
-                    .documentName(fileName)
-                    .documentType(file.getContentType())
-                    .data(file.getBytes())
-                    .typeCreditDocument(typeCredit)
-                    .creditId(credit.getId())
-                    .build();
-
-            return documentRepository.save(document);
-        }
-
-        throw new RuntimeException("Credit not found with id: " + credit_id);
+        return documentRepository.save(document);
     }
 
     @Transactional

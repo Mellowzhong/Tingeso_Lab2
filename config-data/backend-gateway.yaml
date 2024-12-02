@@ -9,7 +9,7 @@ eureka:
       default-zone: http://backend-eureka:8761/eureka
   instance:
     hostname: localhost
-    
+
 spring:
   application:
     name: gateway
@@ -46,5 +46,9 @@ spring:
             - Path=/financialEvaluation/**
         - id: utils-microservice
           uri: lb://utils-microservice
+          predicates:
+            - Path=/utils/**
+        - id: requestTracking-microservice
+          uri: lb://requestTracking-microservice
           predicates:
             - Path=/utils/**

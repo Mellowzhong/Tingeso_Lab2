@@ -16,6 +16,8 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
+    properties:
+      hibernate.connection.autocommit: false  # Corrected property name
   cloud:
     config:
       enabled: true
@@ -25,10 +27,13 @@ spring:
     url: jdbc:postgresql://${POSTGRES_DB_HOST}:5432/${POSTGRES_DB_DOCUMENT}?useSSL=false
     username: postgres
     password: 1234
+    hikari:
+      auto-commit: false  # Explicitly disable auto-commit for HikariCP
   servlet:
     multipart:
       max-file-size: 5MB
       max-request-size: 10MB
+
 management:
   endpoints:
     web:

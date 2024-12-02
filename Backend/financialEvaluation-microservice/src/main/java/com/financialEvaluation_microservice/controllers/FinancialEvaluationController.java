@@ -37,8 +37,8 @@ public class FinancialEvaluationController {
     }
 
 //    Feign controllers
-@GetMapping("/getById/{creditId}")
-    Optional<FinancialEvaluation> findFinancialEvaluationByCreditId(@PathVariable("creditId") UUID creditId){
+    @GetMapping("/getById/{creditId}")
+    FinancialEvaluation findFinancialEvaluationByCreditId(@PathVariable("creditId") UUID creditId){
         return financialEvaluationService.findFinancialEvaluationByCreditId(creditId);
     }
 }

@@ -33,14 +33,10 @@ public class CreditService {
 
     public UUID addCredit(Credit credit, UUID user_id) {
 //        Optional<User> optionalUser = userClient.findUserById(user_id);
-        Optional<User> optionalUser = restTemplate.getForObject(userURL+ "/getById/" + user_id, Optional.class);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            credit.setUserId(user.getId());
-            creditRepository.save(credit);
-            return credit.getId();
-        }
-        return null;
+        User user = restTemplate.getForObject(userURL+ "/getById/" + user_id, User.class);
+        credit.setUserId(user.getId());
+        creditRepository.save(credit);
+        return credit.getId();
     }
 
     public List<CreditDTO> getAllCreditsByUserId(UUID user_id) {
@@ -62,13 +58,9 @@ public class CreditService {
     }
 
 //    Feing services
-    public Optional<CreditDTO> getCreditById(UUID credit_id) {
+    public CreditDTO getCreditById(UUID credit_id) {
         Optional<Credit> credit = creditRepository.findById(credit_id);
-        if (credit.isPresent()) {
-            Optional<CreditDTO> creditDTO = Optional.of(toDTO.convertToCreditDTO(credit.get()));
-            System.out.println(creditDTO.toString());
-            return creditDTO;
-        }
-        return Optional.empty();
+
+        return toDTO.convertToCreditDTO(credit.get());
     }
 }

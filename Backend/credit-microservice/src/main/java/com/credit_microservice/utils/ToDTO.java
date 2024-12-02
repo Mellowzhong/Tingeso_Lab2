@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,20 +19,20 @@ public class ToDTO {
 //    private final UserClient userClient;
     final String userURL = "http://user-microservice/user";
     final String documentURL = "http://document-microservice/document";
-    final String financialEvaluationURL = "http://financial-evaluation-microservice/financialEvaluation";
+    final String financialEvaluationURL = "http://financialEvaluation-microservice/financialEvaluation";
 //    private final FinancialEvaluationClient financialEvaluationClient;
 
     @Autowired
     RestTemplate restTemplate;
 
     public CreditDTO convertToCreditDTO(Credit credit) {
-//        Optional<User> optionalUser = userClient.findUserById(credit.getUserId());
-        Optional<User> optionalUser = restTemplate.getForObject(userURL+ "/getById/" + credit.getUserId(), Optional.class);
-
-        if (optionalUser.isEmpty()) {
-            throw new IllegalArgumentException("Usuario no encontrado para el crédito con ID: " + credit.getId());
+        // Retrieve User object
+        User user = restTemplate.getForObject(userURL + "/getById/" + credit.getUserId(), User.class);
+        if (user == null) {
+            throw new RuntimeException("User not found for ID: " + credit.getUserId());
         }
 
+        // Build CreditDTO with basic credit information and user
         CreditDTO.CreditDTOBuilder creditDTOBuilder = CreditDTO.builder()
                 .id(credit.getId())
                 .creditType(credit.getCreditType())
@@ -40,19 +41,31 @@ public class ToDTO {
                 .monthlyClientIncome(credit.getMonthlyClientIncome())
                 .status(credit.getStatus())
                 .applicationDate(credit.getApplicationDate())
-                .user(optionalUser.get());
+                .user(user);
 
-//        Optional<FinancialEvaluation> optionalFinancialEvaluation = financialEvaluationClient.findFinancialEvaluationByCreditId(credit.getId());
-        Optional<FinancialEvaluation> optionalFinancialEvaluation = restTemplate.getForObject(financialEvaluationURL + "/getById/" + credit.getFinancialEvaluationId(), Optional.class);
+        // Retrieve FinancialEvaluation object
+        if (credit.getFinancialEvaluationId() != null) {
+            FinancialEvaluation financialEvaluation = restTemplate.getForObject(
+                    financialEvaluationURL + "/getById/" + credit.getFinancialEvaluationId(),
+                    FinancialEvaluation.class
+            );
+            if (financialEvaluation != null) {
+                creditDTOBuilder.financialEvaluation(financialEvaluation);
+            }
+        } else {
+            System.out.println("Financial Evaluation ID is null for Credit ID: " + credit.getId());
+        }
 
-        optionalFinancialEvaluation.ifPresent(creditDTOBuilder::financialEvaluation);
-
-//        List<DocumentDTO> documentDTOList = documentClient.getAllDocumentsByCreditId(credit.getId());
+        // Retrieve list of DocumentDTOs
         List<DocumentDTO> documentDTOList = restTemplate.getForObject(documentURL + "/get/" + credit.getId(), List.class);
 
         CreditDTO creditDTO = creditDTOBuilder.build();
 
-        creditDTO.setDocuments(documentDTOList);
+        if (documentDTOList != null) {
+            creditDTO.setDocuments(documentDTOList);
+        } else {
+            creditDTO.setDocuments(Collections.emptyList());
+        }
 
         return creditDTO;
     }

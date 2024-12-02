@@ -28,7 +28,7 @@ cd ..
 
 cd credit-microservice
 mvn clean install
-docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/credit-microservice:lates --push .
+docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/credit-microservice:latest --push .
 cd ..
 
 cd document-microservice
@@ -106,7 +106,7 @@ kubectl apply -f frontend-deployment-service.yaml
 kubectl get pods
 
 kubectl port-forward <nombre-pod> <puerto-local>:<puerto-contenedor>
-kubectl port-forward backend-gateway-deployment-866d6d9f95-w4bqn 8080:8080
+kubectl port-forward backend-gateway-deployment-866d6d9f95-xkql6 8080:8080
 
 minikube service frontend
 minikube tunnel
