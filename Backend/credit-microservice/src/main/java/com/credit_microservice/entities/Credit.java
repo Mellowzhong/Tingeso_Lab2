@@ -2,6 +2,7 @@ package com.credit_microservice.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "credit")
+@Builder
 public class Credit {
     @Id
     @Column(name = "id", unique = true, nullable = false)

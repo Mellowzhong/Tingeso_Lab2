@@ -63,4 +63,35 @@ public class CreditService {
 
         return toDTO.convertToCreditDTO(credit.get());
     }
+
+    public CreditDTO updateCreditById(UUID credit_id, CreditDTO creditDTO) {
+        Optional<Credit> optionalCredit = creditRepository.findById(credit_id);
+
+        if (optionalCredit.isPresent()) {
+            Credit existingCredit = optionalCredit.get();
+
+            // Update fields
+            existingCredit.setCreditType(creditDTO.getCreditType());
+            existingCredit.setRequestedAmount(creditDTO.getRequestedAmount());
+            existingCredit.setTotalPriceHome(creditDTO.getTotalPriceHome());
+            existingCredit.setMonthlyClientIncome(creditDTO.getMonthlyClientIncome());
+            existingCredit.setStatus(creditDTO.getStatus());
+            existingCredit.setApplicationDate(creditDTO.getApplicationDate());
+            existingCredit.setUserId(creditDTO.getUser().getId());
+
+            // Check for null before setting financial evaluation ID
+            if (creditDTO.getFinancialEvaluation() != null) {
+                existingCredit.setFinancialEvaluationId(creditDTO.getFinancialEvaluation().getId());
+            }
+
+            // Save updated credit
+            System.out.println(creditDTO.toString());
+            creditRepository.save(existingCredit);
+
+            return toDTO.convertToCreditDTO(existingCredit);
+        } else {
+            // Log and handle the case where the credit is not found
+            return null;
+        }
+    }
 }

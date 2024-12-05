@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -39,5 +38,10 @@ public class CreditController {
     @GetMapping("/getCredit/{creditId}")
     public CreditDTO getCreditById(@PathVariable("creditId") UUID creditId) {
         return creditService.getCreditById(creditId);
+    }
+
+    @PutMapping("/updateCredit/{creditId}")
+    public CreditDTO updateCreditById(@PathVariable("creditId") UUID creditId, @RequestBody CreditDTO creditDTO) {
+        return creditService.updateCreditById(creditId, creditDTO);
     }
 }

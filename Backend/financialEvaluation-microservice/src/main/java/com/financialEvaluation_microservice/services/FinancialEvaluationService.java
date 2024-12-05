@@ -36,6 +36,9 @@ public class FinancialEvaluationService {
         CreditDTO credit = restTemplate.getForObject(creditURL + "/getCredit/" + creditID, CreditDTO.class);
 
         credit.setFinancialEvaluationId(financialEvaluation.getId());
+
+        restTemplate.put(creditURL + "/updateCredit/" + creditID, credit);
+
         financialEvaluation.setCreditId(credit.getId());
         return new ResponseEntity<>(financialEvaluationRepository.save(financialEvaluation), HttpStatus.OK);
 

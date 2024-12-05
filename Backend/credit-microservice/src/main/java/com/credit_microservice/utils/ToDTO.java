@@ -50,6 +50,7 @@ public class ToDTO {
                     FinancialEvaluation.class
             );
             if (financialEvaluation != null) {
+                System.out.println(financialEvaluation.toString());
                 creditDTOBuilder.financialEvaluation(financialEvaluation);
             }
         } else {
