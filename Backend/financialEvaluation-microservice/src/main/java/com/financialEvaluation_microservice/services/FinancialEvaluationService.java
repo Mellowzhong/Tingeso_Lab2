@@ -16,7 +16,7 @@ import java.util.UUID;
 @Service
 public class FinancialEvaluationService {
     private final FinancialEvaluationRepository financialEvaluationRepository;
-//    private final CreditClient creditClient;
+    //    private final CreditClient creditClient;
     final String creditURL = "http://credit-microservice/credit";
 
     @Autowired
@@ -35,12 +35,14 @@ public class FinancialEvaluationService {
 //        Optional<CreditDTO> optionalCredit = creditClient.getCreditById(creditID);
         CreditDTO credit = restTemplate.getForObject(creditURL + "/getCredit/" + creditID, CreditDTO.class);
 
-        credit.setFinancialEvaluationId(financialEvaluation.getId());
-
-        restTemplate.put(creditURL + "/updateCredit/" + creditID, credit);
-
         financialEvaluation.setCreditId(credit.getId());
-        return new ResponseEntity<>(financialEvaluationRepository.save(financialEvaluation), HttpStatus.OK);
+
+        FinancialEvaluation savedFinancialEvaluation = financialEvaluationRepository.save(financialEvaluation);
+
+        credit.setFinancialEvaluationId(financialEvaluation.getId());
+        restTemplate.put(creditURL + "/putCredit/" + creditID, credit);
+
+        return new ResponseEntity<>(savedFinancialEvaluation, HttpStatus.OK);
 
     }
 
@@ -57,7 +59,7 @@ public class FinancialEvaluationService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-//    Feing services
+    //    Feing services
     public FinancialEvaluation findFinancialEvaluationByCreditId(UUID findByCreditId) {
         return financialEvaluationRepository.findByCreditId(findByCreditId).get();
     }

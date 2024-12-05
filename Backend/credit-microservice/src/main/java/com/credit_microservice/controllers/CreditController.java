@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -24,6 +25,11 @@ public class CreditController {
         return creditService.addCredit(credit, user_id);
     }
 
+    @PutMapping("/putCredit}")
+    public UUID putCredit(@RequestBody Credit credit) {
+        return creditService.updateCredit(credit, credit.getId());
+    }
+
     @GetMapping("/get/{user_id}")
     public List<CreditDTO> getCreditByUserId(@PathVariable("user_id") UUID user_id) {
         return creditService.getAllCreditsByUserId(user_id);
@@ -34,14 +40,9 @@ public class CreditController {
         return creditService.getAllCredits();
     }
 
-//    Feign controllers
+    //    Feign controllers
     @GetMapping("/getCredit/{creditId}")
     public CreditDTO getCreditById(@PathVariable("creditId") UUID creditId) {
         return creditService.getCreditById(creditId);
-    }
-
-    @PutMapping("/updateCredit/{creditId}")
-    public CreditDTO updateCreditById(@PathVariable("creditId") UUID creditId, @RequestBody CreditDTO creditDTO) {
-        return creditService.updateCreditById(creditId, creditDTO);
     }
 }

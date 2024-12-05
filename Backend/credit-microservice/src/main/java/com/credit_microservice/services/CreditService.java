@@ -5,6 +5,7 @@ import com.credit_microservice.entities.User;
 import com.credit_microservice.entities.Credit;
 import com.credit_microservice.repositories.CreditRepository;
 import com.credit_microservice.utils.ToDTO;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class CreditService {
     private final CreditRepository creditRepository;
-//    private final UserClient userClient;
+    //    private final UserClient userClient;
     final String userURL = "http://user-microservice/user";
     private final ToDTO toDTO; // Instancia de la clase de utilidades
 
@@ -35,6 +36,16 @@ public class CreditService {
 //        Optional<User> optionalUser = userClient.findUserById(user_id);
         User user = restTemplate.getForObject(userURL+ "/getById/" + user_id, User.class);
         credit.setUserId(user.getId());
+        creditRepository.save(credit);
+        return credit.getId();
+    }
+
+    public UUID updateCredit(Credit credit, UUID credit_id) {
+        Optional<Credit> creditOptional = creditRepository.findById(credit_id);
+        if (creditOptional.isEmpty()) {
+            throw new EntityNotFoundException("Credit not found");
+        }
+
         creditRepository.save(credit);
         return credit.getId();
     }
@@ -57,41 +68,10 @@ public class CreditService {
                 .collect(Collectors.toList());
     }
 
-//    Feing services
+    //    Feing services
     public CreditDTO getCreditById(UUID credit_id) {
         Optional<Credit> credit = creditRepository.findById(credit_id);
 
         return toDTO.convertToCreditDTO(credit.get());
-    }
-
-    public CreditDTO updateCreditById(UUID credit_id, CreditDTO creditDTO) {
-        Optional<Credit> optionalCredit = creditRepository.findById(credit_id);
-
-        if (optionalCredit.isPresent()) {
-            Credit existingCredit = optionalCredit.get();
-
-            // Update fields
-            existingCredit.setCreditType(creditDTO.getCreditType());
-            existingCredit.setRequestedAmount(creditDTO.getRequestedAmount());
-            existingCredit.setTotalPriceHome(creditDTO.getTotalPriceHome());
-            existingCredit.setMonthlyClientIncome(creditDTO.getMonthlyClientIncome());
-            existingCredit.setStatus(creditDTO.getStatus());
-            existingCredit.setApplicationDate(creditDTO.getApplicationDate());
-            existingCredit.setUserId(creditDTO.getUser().getId());
-
-            // Check for null before setting financial evaluation ID
-            if (creditDTO.getFinancialEvaluation() != null) {
-                existingCredit.setFinancialEvaluationId(creditDTO.getFinancialEvaluation().getId());
-            }
-
-            // Save updated credit
-            System.out.println(creditDTO.toString());
-            creditRepository.save(existingCredit);
-
-            return toDTO.convertToCreditDTO(existingCredit);
-        } else {
-            // Log and handle the case where the credit is not found
-            return null;
-        }
     }
 }
