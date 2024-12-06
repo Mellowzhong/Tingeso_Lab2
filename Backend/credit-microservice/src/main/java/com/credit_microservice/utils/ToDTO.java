@@ -27,6 +27,9 @@ public class ToDTO {
 
     public CreditDTO convertToCreditDTO(Credit credit) {
         // Retrieve User object
+
+        System.out.println("credittoDTO:" + credit.toString());
+
         User user = restTemplate.getForObject(userURL + "/getById/" + credit.getUserId(), User.class);
         if (user == null) {
             throw new RuntimeException("User not found for ID: " + credit.getUserId());

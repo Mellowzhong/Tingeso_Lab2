@@ -36,7 +36,11 @@ public class CreditService {
 //        Optional<User> optionalUser = userClient.findUserById(user_id);
         User user = restTemplate.getForObject(userURL+ "/getById/" + user_id, User.class);
         credit.setUserId(user.getId());
-        creditRepository.save(credit);
+
+        Credit credit2 = creditRepository.save(credit);
+
+        System.out.println("credito guardado" + credit2);
+
         return credit.getId();
     }
 
@@ -46,7 +50,12 @@ public class CreditService {
             throw new EntityNotFoundException("Credit not found");
         }
 
-        creditRepository.save(credit);
+        creditOptional.get().setFinancialEvaluationId(credit.getFinancialEvaluationId());
+
+        System.out.println("credito obtenido por id:" + creditOptional.toString());
+        System.out.println("creadito actualizado:" + credit.toString());
+
+        creditRepository.save(creditOptional.get());
         return credit.getId();
     }
 

@@ -25,7 +25,7 @@ public class CreditController {
         return creditService.addCredit(credit, user_id);
     }
 
-    @PutMapping("/putCredit}")
+    @PutMapping("/putCredit")
     public UUID putCredit(@RequestBody Credit credit) {
         return creditService.updateCredit(credit, credit.getId());
     }

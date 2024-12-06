@@ -20,6 +20,7 @@ public class Credit {
     @Column(name = "id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     private String creditType;
     private Integer requestedAmount;
     private Integer totalPriceHome;

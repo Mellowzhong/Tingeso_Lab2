@@ -40,7 +40,10 @@ public class FinancialEvaluationService {
         FinancialEvaluation savedFinancialEvaluation = financialEvaluationRepository.save(financialEvaluation);
 
         credit.setFinancialEvaluationId(financialEvaluation.getId());
-        restTemplate.put(creditURL + "/putCredit/" + creditID, credit);
+
+        System.out.println("credito a actualizar:" + credit.toString());
+
+        restTemplate.put(creditURL + "/putCredit", credit);
 
         return new ResponseEntity<>(savedFinancialEvaluation, HttpStatus.OK);
 
@@ -60,7 +63,7 @@ public class FinancialEvaluationService {
     }
 
     //    Feing services
-    public FinancialEvaluation findFinancialEvaluationByCreditId(UUID findByCreditId) {
-        return financialEvaluationRepository.findByCreditId(findByCreditId).get();
+    public FinancialEvaluation findFinancialEvaluationByCreditId(UUID id) { //Cmabiar el nombre porque obtiene por el id no mas
+        return financialEvaluationRepository.findById(id).get();
     }
 }

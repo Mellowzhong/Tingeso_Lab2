@@ -2,55 +2,54 @@
 cd Backend
 
 cd backend-config
-mvn clean install
-docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/backend-config:latest --push .
+docker build -t mellow03/backend-config .
+docker push mellow03/backend-config
 cd ..
 
 cd backend-eureka
-mvn clean install
-docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/backend-eureka --push .
+docker build -t mellow03/backend-eureka .
+docker push mellow03/backend-eureka
 cd ..
 
 cd backend-gateway
-mvn clean install
-docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/backend-gateway --push .
+docker build -t mellow03/backend-gateway .
+docker push mellow03/backend-gateway:latest
 cd ..
 
 cd user-microservice
-mvn clean install
-docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/user-microservice:latest --push .
+docker build -t mellow03/user-microservice:latest .
+docker push mellow03/user-microservice:latest
 cd ..
 
 cd financialEvaluation-microservice
-mvn clean install
-docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/financial-evaluation-microservice:latest --push .
-cd ..
-
-cd credit-microservice
-mvn clean install
-docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/credit-microservice:latest --push .
-cd ..
-
-cd document-microservice
-mvn clean install
-docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/document-microservice:latest --push .
-cd ..
-
-cd utils-microservice
-mvn clean install
-docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/utils-microservice:latest --push .
+docker build -t mellow03/financial-evaluation-microservice:latest .
+docker push mellow03/financial-evaluation-microservice:latest
 cd ..
 
 cd requestTracking-microservice
-mvn clean install
-docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/request-tracking-microservice:latest --push .
+docker build -t mellow03/request-tracking-microservice:latest .
+docker push mellow03/request-tracking-microservice:latest
+cd ..
+
+cd credit-microservice
+docker build -t mellow03/credit-microservice:latest .
+docker push mellow03/credit-microservice:latest
+cd ..
+
+cd document-microservice
+docker build -t mellow03/document-microservice:latest .
+docker push mellow03/document-microservice:latest
+cd ..
+
+cd utils-microservice
+docker build -t mellow03/utils-microservice:latest .
+docker push mellow03/utils-microservice:latest
 cd ..
 
 <!-- Frontend -->
 cd Frontend
 docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/frontend:latest --push .
 cd ..
-
 
 <!-- Kubernetes -->
 
@@ -79,7 +78,7 @@ kubectl apply -f postgres-dp-sv-pvc.yaml
 
 <!-- Crear las bases de datos en el pod -->
 kubectl get pods
-kubectl exec -it postgres-67dbbf56f4-5k2gb -- psql -U postgres
+kubectl exec -it postgres-67dbbf56f4-8r4q2 -- psql -U postgres
 
 <!-- Crear las bases de datos -->
 CREATE DATABASE dbuser;
@@ -106,7 +105,7 @@ kubectl apply -f frontend-deployment-service.yaml
 kubectl get pods
 
 kubectl port-forward <nombre-pod> <puerto-local>:<puerto-contenedor>
-kubectl port-forward backend-gateway-deployment-866d6d9f95-xkql6 8080:8080
+kubectl port-forward backend-gateway-deployment-866d6d9f95-78qw5 8080:8080
 
 minikube service frontend
 minikube tunnel
