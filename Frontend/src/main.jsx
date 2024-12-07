@@ -12,6 +12,7 @@ import ErrorPage from './Components/ErrorPage.jsx';
 import CreditRequest from './Credit/Views/CreditRequest.jsx'
 import Simulation from './Simulation/Views/Simulation.jsx';
 import Excecutive from "./User/Views/Executive.jsx";
+import RequestTracking from "./RequestTracking/Views/RequestTracking.jsx";
 
 const router = createHashRouter([
   {
@@ -46,6 +47,15 @@ const router = createHashRouter([
     element: (
       <ComponentsWithNavBar>
         <Excecutive />
+      </ComponentsWithNavBar >
+    ),
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/requestTracking",
+    element: (
+      <ComponentsWithNavBar>
+        <RequestTracking />
       </ComponentsWithNavBar >
     ),
     errorElement: <ErrorPage />,

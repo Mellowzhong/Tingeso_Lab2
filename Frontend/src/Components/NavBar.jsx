@@ -28,6 +28,12 @@ export default function NavBar() {
                 >
                     Ejecutivo
                 </Link>
+                <Link
+                    to="/requestTracking"
+                    className="text-white text-lg font-semibold hover:text-gray-300 transition duration-300"
+                >
+                    Seguimiento de Solicitudes
+                </Link>
             </div>
         </nav>
     );

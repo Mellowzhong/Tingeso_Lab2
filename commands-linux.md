@@ -48,7 +48,8 @@ cd ..
 
 <!-- Frontend -->
 cd Frontend
-docker buildx build --platform linux/amd64,linux/arm64 -t mellow03/frontend:latest --push .
+docker build -t mellow03/frontend:latest .
+docker push mellow03/frontend:latest
 cd ..
 
 <!-- Kubernetes -->
@@ -105,7 +106,7 @@ kubectl apply -f frontend-deployment-service.yaml
 kubectl get pods
 
 kubectl port-forward <nombre-pod> <puerto-local>:<puerto-contenedor>
-kubectl port-forward backend-gateway-deployment-866d6d9f95-78qw5 8080:8080
+kubectl port-forward backend-gateway-deployment-866d6d9f95-k47dx 8080:8080
 
 minikube service frontend
 minikube tunnel

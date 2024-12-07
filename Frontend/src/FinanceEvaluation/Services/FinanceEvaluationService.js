@@ -34,7 +34,7 @@ export const updatefinanceEvaluation = async (
 export const getDebtToIncomeRatioCalculation = async (debtToIncomeData) => {
   try {
     const response = await api.post(
-      "/calculate/debtToIncomeRatio",
+      "/utils/debtToIncomeRatio",
       debtToIncomeData
     );
     return response.data;
@@ -45,7 +45,7 @@ export const getDebtToIncomeRatioCalculation = async (debtToIncomeData) => {
 
 export const maxAmount = async () => {
   try {
-    const response = await api.get("/calculate/maxAmount");
+    const response = await api.post("/utils/totalCost");
     return response.data;
   } catch (error) {
     console.error("Error getting max amount", error);

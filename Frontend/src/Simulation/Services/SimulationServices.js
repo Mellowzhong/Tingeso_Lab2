@@ -13,9 +13,9 @@ export const getSimulation = async (simulationData) => {
   }
 };
 
-export const getTotalCost = async () => {
+export const getTotalCost = async (totalCostData) => {
   try {
-    const response = await api.get("/utils/totalCost");
+    const response = await api.post("/utils/totalCost", totalCostData);
     return response.data;
   } catch (error) {
     console.error("Error getting total cost", error);

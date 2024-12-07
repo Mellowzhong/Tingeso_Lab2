@@ -19,7 +19,14 @@ function TotalCostForm({ creditAmount, simulatedInterestRate, numberOfPays, tota
         // Simulación
         try {
             const { quote } = await getSimulation(simulationData);
-            const { totalCost } = await getTotalCost(creditAmount, numberOfPays, quote);
+
+            const totalCostData = {
+                creditAmount,
+                numberOfPays,
+                quote
+            };
+
+            const { totalCost } = await getTotalCost(totalCostData);
 
             // Cálculo del costo total
             setTotalCost(totalCost);

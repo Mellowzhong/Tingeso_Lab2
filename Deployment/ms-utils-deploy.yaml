@@ -16,7 +16,11 @@ spec:
         - name: utils-microservice-container
           image: mellow03/utils-microservice:latest
           ports:
-            - containerPort: 9090
+            - containerPort: 8081
           env:
-            - name: SERVER_PORT
-              value: "0"
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://backend-config:8081
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://backend-eureka:8761
+            - name: eureka.instance.preferIpAddress
+              value: "true"
